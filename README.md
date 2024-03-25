@@ -15,12 +15,12 @@
 ### App Evaluation
 
 [Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
-- **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+- **Category:** Food & Drink, Lifestyle.
+- **Mobile:** Uses location info to give on-the-go access to restaurant information. Leverages mobile camera to idenfiy cousine and search for restaurants and for recepies. 
+- **Story:** The app extends beyond a normal restaurant locator and reviews to allow users to bring the restaurant experience into their homes. They'll be able see recepies for menu items at restaurants and even edit them to make it thier own!
+- **Market:** Appeals to food enthusiasts, travelers, and those seeking dining recommendations.
+- **Habit:** Users may use it frequently to discover new dining options or share their culinary experiences.
+- **Scope:** Initial version could focus on basic functionality like listing restaurants and reviews. Subsequent versions could expand to include advanced features like recipe sharing and personalized recommendations.
 
 ## Product Spec
 
