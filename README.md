@@ -105,5 +105,5 @@
 
 ### [BONUS] Interactive Prototype
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F4RMktQKNxT1FX0Wrj3xNx2%2FTasteBudzz%3Ftype%3Ddesign%26node-id%3D5-16%26t%3D79cIaY4YjqeR51g0-1%26scaling%3Dscale-down%26page-id%3D0%253A1%26starting-point-node-id%3D5%253A3%26show-proto-sidebar%3D1%26mode%3Ddesign" allowfullscreen></iframe>
+https://www.figma.com/proto/4RMktQKNxT1FX0Wrj3xNx2/TasteBudzz?embed_host=share&kind=proto&node-id=5-3&page-id=0%3A1&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=5%3A3&t=5AotGJ1XQFzbDUeA-1&type=design&mode=design
 <br>
