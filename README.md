@@ -10,11 +10,10 @@
 
 ### Description
 
-[Description of your app]
+A restaurant review app that facilitates users in finding nearby restaurants, writing reviews, accessing menus, and saving and editing recipes.
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
 - **Category:** Food & Drink, Lifestyle.
 - **Mobile:** Uses location info to give on-the-go access to restaurant information. Leverages mobile camera to idenfiy cousine and search for restaurants and for recepies. 
 - **Story:** The app extends beyond a normal restaurant locator and reviews to allow users to bring the restaurant experience into their homes. They'll be able see recepies for menu items at restaurants and even edit them to make it thier own!
