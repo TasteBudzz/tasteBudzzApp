@@ -49,10 +49,11 @@
   - User can login or naviga to registraion screen
 - Signup
   - User can create a new account with email, name, and password
-  - ...
 - Home screen
   - User can see near by restaurents based on filter (distance, cousine, etc.)
   - User can search for restaurants based on food images
+- Image Upload Screen
+  - User can take a picture of a food or select a image from device to be used in restaurant search in home screen
 - Restaurant Detail Screen
   - User can view restaurent details, reviews, and ratings
   - Users can see the menu and leave a review if desired
@@ -60,7 +61,21 @@
   - User can leave a rating and review for a restaurant
 - Restaurant Menu Screen
   - User can leave a rating and review for a restaurant
-.. add rest of screens
+- Menu Item Recipe
+  - User can see a recipe for a menu item in a resturant with ingredients, instruction, and nutritional info
+- Reviews Screen
+  - User can see summary of reviews they've left in the past
+- Review Detail 
+  - User can see the entire reivew along with options to delete or edit review
+- Edit Review
+  - User edit and save past reviews they've left
+- Saved Recipes 
+  - User can see summaries of reipes they've saved in the past
+- Saved Recipe Detail Screen
+  - User can see details of a saved recipe and option to edit the recipe
+- Edot Recipe
+  - User can edit saved recipes to make it their own!
+
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
