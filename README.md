@@ -79,18 +79,32 @@ A restaurant review app that facilitates users in finding nearby restaurants, wr
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Saved Recipes - navigates to screen that lists recipes the user has saved 
+* Home Page - navigates to screen which lists various nearby restaurants users can search through
+* Your Reviews - navigates to screen which lists all reviews that the user has inputted for any restaurants
 
 **Flow Navigation** (Screen to Screen)
 
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
+- Log in Screen
+  - => Home Page (after successful username and password input)
+  - => Sign Up Page (if user does not have a registered account for the application yet)
+- Home Screen
+  - => Restaurant Detail Screen (after clicking on one of the restaurant buttons)
+  - => Image Upload Screen
+- Restaurant Detail Screen
+  - => Menu Screen (after clicking on Menu button)
+  - => Write Review Screen (after click on "Leave Review" button)
+- Write Review Screen
+  - => Restaurant Detail Screen (after submitting or cancelling a review)
+- Menu Screen
+  - => Menu Item Recipe Screen (after clicking on one of the menu items)
+- User Reviews Screen
+  - => Review Details Screen (after clicking on one of the listed reviews)
+- Review Details Screen
+  - => Edit Review Screen (after clicking on "Edit" button on review details)
+  - => User Reviews Screen (on clicking "delete" button)
+- Edit Review Screen
+  - => Review Details Screen (after clicking "cancel" or "save")
 
 ## Wireframes
 
