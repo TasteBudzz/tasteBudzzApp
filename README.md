@@ -45,13 +45,22 @@
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
+- Login Screen
+  - User can login or naviga to registraion screen
+- Signup
+  - User can create a new account with email, name, and password
   - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
-
+- Home screen
+  - User can see near by restaurents based on filter (distance, cousine, etc.)
+  - User can search for restaurants based on food images
+- Restaurant Detail Screen
+  - User can view restaurent details, reviews, and ratings
+  - Users can see the menu and leave a review if desired
+- Write Reivew Screen
+  - User can leave a rating and review for a restaurant
+- Restaurant Menu Screen
+  - User can leave a rating and review for a restaurant
+.. add rest of screens
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
