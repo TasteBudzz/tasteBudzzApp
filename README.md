@@ -150,12 +150,15 @@ Though each has their drawback. For now, will pursue the second/third option and
 
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 - ![tastebudzboard.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/tastebudzboard.png?raw=true)
-<br>
-
-
 
 <br>
+
+
+
+<br>
+
 - [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] 
+
 ![issues2.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/issues2.png?raw=true)
 
 
