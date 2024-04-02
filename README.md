@@ -1,3 +1,4 @@
+
 # Milestone 1 - Taste Budzz App (Unit 7)
 
 ## Table of Contents
@@ -121,3 +122,58 @@ https://www.figma.com/file/4RMktQKNxT1FX0Wrj3xNx2/TasteBudzz?type=design&node-id
 
 https://www.figma.com/proto/4RMktQKNxT1FX0Wrj3xNx2/TasteBudzz?embed_host=share&kind=proto&node-id=5-3&page-id=0%3A1&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=5%3A3&t=5AotGJ1XQFzbDUeA-1&type=design&mode=design
 <br>
+
+<br>
+
+# Milestone 2 - Build Sprint 1 (Unit 8)
+
+## GitHub Project board
+
+[Add screenshot of your Project Board with three milestones visible in
+this section]
+![tastebudzboard.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/tastebudzboard.png?raw=true)
+
+## Issue cards
+
+
+## Issues worked on this sprint
+
+- Worked on the research for which api to use for our restaurant reviews app. The API in question will be the API we use for retrieving info from nearby restaurants. This is the most important aspect of the app since all the features rely on the information that is retrievable. I have found a couple of API,
+  - https://rapidapi.com/restaurantmenus/api/documenu/details - mainly for well known chain restaurants. Not local restaurant friendly. Though it did show menu, address location, and such.
+  - https://stupefied-torvalds-88b3ed.netlify.app/ - It seems promising since it has all restaurant information we need. When attempting to test out the API on their website, the page loads forever.
+  - https://rapidapi.com/ptwebsolution/api/worldwide-restaurants/pricing - Seems very promising as well as it does show local restaurants when hitting endpoint but the menu is not returned. 
+Though each has their drawback. For now, will pursue the second/third option and attempt to connect on our own and see what results we get for second option. For the third option we will see if theres a way we can just get the menu now. 
+
+- Created Database Schema to follow 
+![tastebudzboard.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/tastebuds%20diagram.png?raw=true)
+
+
+- [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
+<br>
+
+- [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
+<br>
+- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+
+
+
+# Milestone 3 - Build Sprint 2 (Unit 9)
+
+## GitHub Project board
+
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+
+## Completed user stories
+
+- List the completed user stories from this unit
+- List any pending user stories / any user stories you decided to cut
+from the original requirements
+
+[Add video/gif of your current application that shows build progress]
+<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+
+## App Demo Video
+
+- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
