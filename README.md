@@ -30,7 +30,7 @@ A restaurant review app that facilitates users in finding nearby restaurants, wr
 
 1. List nearby restaurants based off location with filters such as cousine and distance
 2. Allow users to enter and view reviews for restaurants 
-3. User account and autheticaion for access to saved recepies
+[x] 3. User account and autheticaion for access to saved recepies
 4. Show menu items (if avaliable) for restaurants
 5. Show recepie for menu items
 6. Save and edit recepies for later use
