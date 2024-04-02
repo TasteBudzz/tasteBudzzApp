@@ -140,7 +140,8 @@ this section]
 - Worked on the research for which api to use for our restaurant reviews app. The API in question will be the API we use for retrieving info from nearby restaurants. This is the most important aspect of the app since all the features rely on the information that is retrievable. I have found a couple of API,
   - https://rapidapi.com/restaurantmenus/api/documenu/details - mainly for well known chain restaurants. Not local restaurant friendly. Though it did show menu, address location, and such.
   - https://stupefied-torvalds-88b3ed.netlify.app/ - It seems promising since it has all restaurant information we need. When attempting to test out the API on their website, the page loads forever.
-Though each has their drawback. For now, will pursue the second option and attempt to connect on our own and see what results we get. 
+  - https://rapidapi.com/ptwebsolution/api/worldwide-restaurants/pricing - Seems very promising as well as it does show local restaurants when hitting endpoint but the menu is not returned. 
+Though each has their drawback. For now, will pursue the second/third option and attempt to connect on our own and see what results we get for second option. For the third option we will see if theres a way we can just get the menu now. 
 
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 
