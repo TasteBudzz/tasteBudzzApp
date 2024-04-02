@@ -137,7 +137,7 @@ this section]
 
 
 ## Issues worked on this sprint
-
+![issues.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/issues.png?raw=true)
 - Worked on the research for which api to use for our restaurant reviews app. The API in question will be the API we use for retrieving info from nearby restaurants. This is the most important aspect of the app since all the features rely on the information that is retrievable. I have found a couple of API,
   - https://rapidapi.com/restaurantmenus/api/documenu/details - mainly for well known chain restaurants. Not local restaurant friendly. Though it did show menu, address location, and such.
   - https://stupefied-torvalds-88b3ed.netlify.app/ - It seems promising since it has all restaurant information we need. When attempting to test out the API on their website, the page loads forever.
@@ -149,13 +149,14 @@ Though each has their drawback. For now, will pursue the second/third option and
 
 
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
-
+- ![tastebudzboard.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/tastebudzboard.png?raw=true)
 <br>
 
-- [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
 
 <br>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] ![issues2.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/issues2.png?raw=true)
+
 
 
 
