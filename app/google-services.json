@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "689639059323",
+    "project_id": "taste-budzz",
+    "storage_bucket": "taste-budzz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689639059323:android:75c193969624a09239d7de",
+        "android_client_info": {
+          "package_name": "com.example.tastebudzz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN6uy8jvQNR5iWWr_XTMCYBHgVWn3W4Gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
