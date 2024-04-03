@@ -143,7 +143,9 @@ this section]
   - https://stupefied-torvalds-88b3ed.netlify.app/ - It seems promising since it has all restaurant information we need. When attempting to test out the API on their website, the page loads forever.
   - https://rapidapi.com/ptwebsolution/api/worldwide-restaurants/pricing - Seems very promising as well as it does show local restaurants when hitting endpoint but the menu is not returned. 
 Though each has their drawback. For now, will pursue the second/third option and attempt to connect on our own and see what results we get for second option. For the third option we will see if theres a way we can just get the menu now. 
-
+- Found an api to give nutrition information, ingredients, and recepie based on food name. Link: https://rapidapi.com/spoonacular/api/recipe-food-nutrition/
+  - use GET Search Recepies to get recepie id
+  - use GET Get Analyzed Recepie Instructions to get ingredients and instructions for food
 - Created Database Schema to follow 
 ![tastebudzboard.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/tastebuds%20diagram.png?raw=true)
 
