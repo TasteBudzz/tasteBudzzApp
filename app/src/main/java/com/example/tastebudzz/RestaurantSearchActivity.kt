@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.RestaurantList
 import com.example.tastebudzz.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -26,6 +27,7 @@ class RestaurantSearchActivity : AppCompatActivity() {
             insets
         }
 
+        replaceFragment((RestaurantList()))
         auth = Firebase.auth
         // views and buttons
         signoutButton = findViewById(R.id.signoutButton)
@@ -37,5 +39,12 @@ class RestaurantSearchActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun replaceFragment(restaurantListFragment: RestaurantList) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.restaurant_frame_layout, restaurantListFragment)
+        fragmentTransaction.commit()
     }
 }

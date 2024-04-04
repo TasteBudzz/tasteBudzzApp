@@ -37,7 +37,10 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         auth = Firebase.auth
-
+        if (auth.currentUser != null) {
+            val intent = Intent(this, RestaurantSearchActivity::class.java)
+            startActivity(intent)
+        }
         //get text and fields
         emailText = findViewById(R.id.emailAddress)
         passwordText = findViewById(R.id.password)

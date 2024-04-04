@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,16 +27,22 @@ class SignInActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sign_in)
         auth = Firebase.auth
+
+        if (auth.currentUser != null) {
+            val intent = Intent(this, RestaurantSearchActivity::class.java)
+            startActivity(intent)
+        }
+
         // views and buttons
         emailText = findViewById(R.id.emailAddress)
         passwordText = findViewById(R.id.password)
         signinButton = findViewById(R.id.signinButton)
         navSignup = findViewById(R.id.navToSingup)
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }*/
+        }
         navSignup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
