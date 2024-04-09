@@ -4,19 +4,19 @@
     <item
         android:id="@+id/action_favorites"
         android:enabled="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/baseline_fastfood_24"
         android:title="@string/saved_recipes"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_schedules"
         android:enabled="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/baseline_home_24"
         android:title="@string/home_page"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_music"
         android:enabled="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/baseline_note_alt_24"
         android:title="@string/your_reviews"
         app:showAsAction="ifRoom" />
 
