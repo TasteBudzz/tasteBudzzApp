@@ -29,7 +29,7 @@ class SignInActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         if (auth.currentUser != null) {
-            val intent = Intent(this, RestaurantSearchActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 
@@ -85,7 +85,7 @@ class SignInActivity : AppCompatActivity() {
                             Log.d("AUTH", "signInWithEmail:success")
                             val user = auth.currentUser
                             //go to default view after log in
-                            val intent = Intent(this, RestaurantSearchActivity::class.java)
+                            val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                         } else {
                             // If sign in fails, display a message to the user.
