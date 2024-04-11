@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.navigation.fragment)
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
@@ -57,6 +58,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.android.volley:volley:1.2.1")
     implementation(libs.androidx.core.ktx)
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)

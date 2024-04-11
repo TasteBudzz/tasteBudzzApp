@@ -1,0 +1,21 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/savedRecipesFragment">
+
+    <fragment
+        android:id="@+id/savedRecipesFragment"
+        android:name="com.example.tastebudzz.SavedRecipesFragment"
+        android:label="Saved Recipes"
+        tools:layout="@layout/saved_recipes" />
+    <fragment
+        android:id="@+id/restaurantSearchFragment"
+        android:name="com.example.tastebudzz.RestaurantSearchFragment"
+        android:label="Restaurant Search"
+        tools:layout="@layout/fragment_restaurant_list" />
+    <fragment
+        android:id="@+id/yourReviewsFragment"
+        android:name="com.example.tastebudzz.YourReviewsFragment"
+        android:label="Your Reviews"
+        tools:layout="@layout/your_reviews" />
+</navigation>
