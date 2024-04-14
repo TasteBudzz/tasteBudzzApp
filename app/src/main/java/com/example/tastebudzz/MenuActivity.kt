@@ -17,7 +17,9 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        val restaurantName = "Your Restaurant Name" // Replace this with actual restaurant name
+        // Retrieve the name of the restaurant from the intent extras
+        val restaurantName = intent.getStringExtra("RESTAURANT_NAME")
+        // val restaurantName = "Your Restaurant Name" // Replace this with actual restaurant name
         val textViewRestaurantName: TextView = findViewById(R.id.textViewRestaurantName)
         textViewRestaurantName.text = restaurantName
 
