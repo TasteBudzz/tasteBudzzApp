@@ -16,5 +16,11 @@ data class Restaurant (
 
     var longitude: String?,
 
-    var cuisines: ArrayList<String>
-)
+    var cuisines: ArrayList<String>,
+
+    var ranking: String?,
+
+    var numReviews: String?,
+
+    var address: String?
+): Serializable

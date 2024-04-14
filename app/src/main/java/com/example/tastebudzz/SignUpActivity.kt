@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         if (auth.currentUser != null) {
-            val intent = Intent(this, RestaurantSearchActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
         //get text and fields
@@ -123,7 +123,7 @@ class SignUpActivity : AppCompatActivity() {
                                 }
 
                             //go to default view after log in
-                            var intent = Intent(this, RestaurantSearchActivity::class.java)
+                            var intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                         } else {
                             // If sign in fails, display a message to the user.

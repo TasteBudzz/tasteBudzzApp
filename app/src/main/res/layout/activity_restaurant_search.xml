@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_accent"
     android:layout_weight="5"
-    tools:context=".RestaurantSearchActivity">
+    tools:context=".HomeActivity">
 
     <Button
         android:id="@+id/signoutButton"

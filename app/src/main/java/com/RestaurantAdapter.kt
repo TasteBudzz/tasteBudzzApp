@@ -2,6 +2,7 @@ package com
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tastebudzz.R
+import com.example.tastebudzz.RestaurantDetailActivity
 
 private const val TAG = "RestaurantAdapter"
 
@@ -52,13 +54,13 @@ class RestaurantAdapter(private val context: Context, private val restaurants: L
         }
 
         override fun onClick(v: View?) {
-            // Get selected article
-            val article = restaurants[absoluteAdapterPosition]
+            // Get selected restuarnant
+            val restaurant = restaurants[absoluteAdapterPosition]
 
-            // Navigate to Details screen and pass selected article
-            //val intent = Intent(context, RestaurantDetailActivity::class.java)
-            //intent.putExtra(ARTICLE_EXTRA, article)
-            //context.startActivity(intent)
+            // Navigate to Details screen and pass selected restaurant
+            val intent = Intent(context, RestaurantDetailActivity::class.java)
+            intent.putExtra("RESTAURANT", restaurant)
+            context.startActivity(intent)
         }
     }
 }

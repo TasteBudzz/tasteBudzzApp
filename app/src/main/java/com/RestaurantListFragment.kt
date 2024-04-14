@@ -1,6 +1,5 @@
 package com
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,8 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +25,7 @@ private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e
 private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
-class RestaurantList : Fragment() {
+class RestaurantListFragment : Fragment() {
 
     private val restaurants = mutableListOf<Restaurant>()
     private lateinit var restaurantsRecyclerView: RecyclerView
@@ -159,13 +156,20 @@ class RestaurantList : Fragment() {
                 val resLog = jsonRestaurant.get("longitude")
                 val resLat = jsonRestaurant.get("latitude")
                 val resRating = jsonRestaurant.get("rating")
+                val resNumReviews = jsonRestaurant.get("num_reviews")
+                val resAddress = jsonRestaurant.get("address")
+                val resRanking = jsonRestaurant.get("ranking")
+
                 val resImg = jsonRestaurant.getJSONObject("photo")
                     .getJSONObject("images")
                     .getJSONObject("large")
                     .get("url")
                 val resCuisines = ArrayList<String>()
                 val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
+                Log.v("API", jsonCuisines.toString())
+
                 for (j in 0 until jsonCuisines.length()) {
+
                     resCuisines.add(JSONObject(jsonCuisines[j].toString()).get("name").toString())
                 }
                 restaurants.add(
@@ -176,7 +180,10 @@ class RestaurantList : Fragment() {
                         resRating as String,
                         resLog as String,
                         resLat as String,
-                        resCuisines
+                        resCuisines,
+                        resRanking as String,
+                        resNumReviews as String,
+                        resAddress as String
                     )
                 )
             }
@@ -189,8 +196,8 @@ class RestaurantList : Fragment() {
     }
 
     companion object {
-        fun newInstance(): RestaurantList {
-            return RestaurantList()
+        fun newInstance(): RestaurantListFragment {
+            return RestaurantListFragment()
         }
     }
 }
