@@ -21,11 +21,10 @@ import org.json.JSONObject
 import java.net.URL
 import java.net.URLEncoder
 
+import com.Constants.WORLDWIDE_RESTAURANTS_SEARCH_KEY
+import com.Constants.LOCATION_SEARCH_API_KEY
 
 private const val TAG = "RestaurantList"
-private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
-private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
-private const val LOCATION_SEARCH_API_KEY = "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
 class RestaurantListFragment : Fragment() {
 
@@ -127,7 +126,7 @@ class RestaurantListFragment : Fragment() {
             .url("https://worldwide-restaurants.p.rapidapi.com/typeahead")
             .post(body)
             .addHeader("content-type", "application/x-www-form-urlencoded")
-            .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
+            .addHeader("X-RapidAPI-Key", WORLDWIDE_RESTAURANTS_SEARCH_KEY)
             .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
             .build()
 
@@ -153,7 +152,7 @@ class RestaurantListFragment : Fragment() {
                     .url("https://worldwide-restaurants.p.rapidapi.com/search")
                     .post(body)
                     .addHeader("content-type", "application/x-www-form-urlencoded")
-                    .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
+                    .addHeader("X-RapidAPI-Key", WORLDWIDE_RESTAURANTS_SEARCH_KEY)
                     .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
                     .build()
 
