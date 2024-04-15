@@ -66,6 +66,18 @@ class RestaurantReviewActivity : AppCompatActivity() {
         }
 
 
+        findViewById<ImageView>(R.id.backBUtton).setOnClickListener {
+            val intent = Intent(this, RestaurantDetailActivity::class.java)
+            intent.putExtra("RESTAURANT", selectedRestaurant)
+            startActivity(intent)
+        }
+        findViewById<ImageView>(R.id.logoutButton).setOnClickListener{
+            Firebase.auth.signOut()
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
+
+
         // submit listner
         reviewSubmitButton.setOnClickListener {
             var rating = ratingView.rating.toDouble()

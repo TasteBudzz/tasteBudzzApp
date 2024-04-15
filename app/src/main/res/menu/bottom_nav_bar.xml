@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_recipe"
+        android:enabled="true"
+        android:icon="@drawable/baseline_fastfood_24"
+        android:title="Saved Recipes"/>
+    <item
+        android:id="@+id/action_restaurant_search"
+        android:enabled="true"
+        android:icon="@drawable/baseline_location_searching_24"
+        android:title="Restaurants"/>
+    <item
+        android:id="@+id/action_reviews"
+        android:enabled="true"
+        android:icon="@drawable/baseline_note_alt_24"
+        android:title="Your Reviews"/>
+</menu>

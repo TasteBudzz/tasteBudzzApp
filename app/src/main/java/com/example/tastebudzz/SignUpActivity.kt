@@ -112,7 +112,7 @@ class SignUpActivity : AppCompatActivity() {
                             Log.d("AUTH", "createUserWithEmail:success")
                             val user = auth.currentUser
                             val updateUser = UserProfileChangeRequest.Builder()
-                                .setDisplayName(firstName + lastName)
+                                .setDisplayName(firstName + " " + lastName)
                                 .build()
                             user?.updateProfile(updateUser)
                                 ?.addOnCompleteListener{ task ->

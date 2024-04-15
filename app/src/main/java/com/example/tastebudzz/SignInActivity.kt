@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.tastebudzz.databinding.ActivityMainBinding
@@ -47,6 +48,7 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var oneTapClient: SignInClient? = null
     private lateinit var signInRequest: BeginSignInRequest
+    private lateinit var googleSignIn: AppCompatButton
 lateinit var progressBar: ProgressBar
 
     private val signInLauncher =  registerForActivityResult(
@@ -98,6 +100,7 @@ lateinit var progressBar: ProgressBar
         signinButton = findViewById(R.id.signinButton)
         navSignup = findViewById(R.id.navToSingup)
         progressBar = findViewById(R.id.progressBar)
+        googleSignIn = findViewById(R.id.google_sign_in_button)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -105,17 +108,20 @@ lateinit var progressBar: ProgressBar
         }
 
         // sign in with google
-        oneTapClient = Identity.getSignInClient(this)
-        signInRequest = BeginSignInRequest.builder()
-            .setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                    .setSupported(true)
-                    // Your server's client ID, not your Android client ID.
-                    .setServerClientId(getString(R.string.siva_default_web_client_id))
-                    // Only show accounts previously used to sign in.
-                    .setFilterByAuthorizedAccounts(false)
-                    .build())
-            .build()
+        googleSignIn.setOnClickListener {
+            oneTapClient = Identity.getSignInClient(this)
+            signInRequest = BeginSignInRequest.builder()
+                .setGoogleIdTokenRequestOptions(
+                    BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                        .setSupported(true)
+                        // Your server's client ID, not your Android client ID.
+                        .setServerClientId(getString(R.string.siva_default_web_client_id))
+                        // Only show accounts previously used to sign in.
+                        .setFilterByAuthorizedAccounts(false)
+                        .build())
+                .build()
+        }
+
 
 
         navSignup.setOnClickListener {
