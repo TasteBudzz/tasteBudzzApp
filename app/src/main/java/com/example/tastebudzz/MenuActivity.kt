@@ -91,7 +91,7 @@ class MenuActivity : AppCompatActivity() {
                             runOnUiThread {
                                 // Initialize the adapter with fetched food items
                                 adapter = FoodAdapter(foodItems) { foodName ->
-                                    // Handle item click here, for example, navigate to the next screen
+                                    // TODO: Handle item click here, for example, navigate to the next screen
                                     Log.d("MenuActivity", "Clicked food item: $foodName")
                                 }
                                 recyclerView.adapter = adapter
