@@ -16,13 +16,14 @@ import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONException
 import org.json.JSONObject
 import java.net.URL
 import java.net.URLEncoder
 
 
 private const val TAG = "RestaurantList"
-private const val SEARCH_API_KEY = "58b0cefb99mshb83c40fdb417121p14b270jsn6cb2eae1e020"
+private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
@@ -166,10 +167,18 @@ class RestaurantListFragment : Fragment() {
                     val resAddress = jsonRestaurant.get("address")
                     val resRanking = jsonRestaurant.get("ranking")
 
-                    val resImg = jsonRestaurant.getJSONObject("photo")
-                        .getJSONObject("images")
-                        .getJSONObject("large")
-                        .get("url")
+                    var resImg: String? = null
+
+                    try {
+                        resImg = jsonRestaurant.getJSONObject("photo")
+                            .getJSONObject("images")
+                            .getJSONObject("large")
+                            .get("url") as String
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                        resImg = ""
+                    }
+
                     val resCuisines = ArrayList<String>()
                     val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
                     Log.v("API", jsonCuisines.toString())
