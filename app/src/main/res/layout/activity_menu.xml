@@ -1,0 +1,43 @@
+<!-- activity_menu.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_accent"
+
+    tools:context=".MenuActivity">
+
+    <!-- Restaurant Name -->
+    <TextView
+        android:id="@+id/textViewRestaurantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Restaurant Name"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Menu Title -->
+    <TextView
+        android:id="@+id/textViewMenuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewRestaurantName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Menu"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- RecyclerView for Menu Items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewMenuTitle"
+        android:layout_marginTop="11dp" />
+
+</RelativeLayout>

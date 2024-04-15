@@ -16,15 +16,15 @@ import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONException
 import org.json.JSONObject
 import java.net.URL
 import java.net.URLEncoder
 
+import com.Constants.WORLDWIDE_RESTAURANTS_SEARCH_KEY
+import com.Constants.LOCATION_SEARCH_API_KEY
 
 private const val TAG = "RestaurantList"
-private const val SEARCH_API_KEY = "58b0cefb99mshb83c40fdb417121p14b270jsn6cb2eae1e020"
-private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
-private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
 class RestaurantListFragment : Fragment() {
 
@@ -50,12 +50,12 @@ class RestaurantListFragment : Fragment() {
         restaurantsRecyclerView = view.findViewById(R.id.article_recycler_view)
         restaurantsRecyclerView.layoutManager = layoutManager
         restaurantsRecyclerView.setHasFixedSize(true)
-        restaurantAdapter =  RestaurantAdapter(view.context, restaurants)
+        restaurantAdapter = RestaurantAdapter(view.context, restaurants)
         restaurantsRecyclerView.adapter = restaurantAdapter
         shimmer = view.findViewById(R.id.shimmer_view)
         shimmer.setVisibility(View.VISIBLE);
         shimmer.startShimmer();
-        return  view
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,14 +65,12 @@ class RestaurantListFragment : Fragment() {
         Thread(BackgroundFetchRestaurants()).start()
     }
 
-    inner class BackgroundFetchRestaurants: Runnable {
-        override  fun run() {
+    inner class BackgroundFetchRestaurants : Runnable {
+        override fun run() {
 
             fetchRestaurants()
         }
     }
-
-
 
 
     private fun fetchRestaurants() {
@@ -82,7 +80,10 @@ class RestaurantListFragment : Fragment() {
 
             val url = URL("https://api.ipify.org")
             val connection = url.openConnection()
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0") // Set a User-Agent to avoid HTTP 403 Forbidden error
+            connection.setRequestProperty(
+                "User-Agent",
+                "Mozilla/5.0"
+            ) // Set a User-Agent to avoid HTTP 403 Forbidden error
             val inputStream = connection.getInputStream()
             val s = java.util.Scanner(inputStream, "UTF-8").useDelimiter("\\A")
             ip = s.next()
@@ -96,9 +97,11 @@ class RestaurantListFragment : Fragment() {
         val loc_client = OkHttpClient()
 
         val loc_request = Request.Builder()
-            .url("https://api.getgeoapi.com/v2/ip/check" +
-                    "?api_key=${LOCATION_SEARCH_API_KEY}" +
-                    "&format=json")
+            .url(
+                "https://api.getgeoapi.com/v2/ip/check" +
+                        "?api_key=${LOCATION_SEARCH_API_KEY}" +
+                        "&format=json"
+            )
             .get()
             .build()
 
@@ -115,23 +118,28 @@ class RestaurantListFragment : Fragment() {
         var client = OkHttpClient()
 
         var mediaType = MediaType.parse("application/x-www-form-urlencoded")
-        var body = RequestBody.create(mediaType, "q=${URLEncoder.encode(loc_string).toString()}&language=en_US")
+        var body = RequestBody.create(
+            mediaType,
+            "q=${URLEncoder.encode(loc_string).toString()}&language=en_US"
+        )
         var request = Request.Builder()
             .url("https://worldwide-restaurants.p.rapidapi.com/typeahead")
             .post(body)
             .addHeader("content-type", "application/x-www-form-urlencoded")
-            .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
+            .addHeader("X-RapidAPI-Key", WORLDWIDE_RESTAURANTS_SEARCH_KEY)
             .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
             .build()
 
         var response = client.newCall(request).execute()
         if (response.code() == 200 || true) {
             val locationBody = response.body()!!.string()
-            val jsonLocation = JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
+            val jsonLocation =
+                JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
             if (jsonLocation.length() > 0) {
                 //use first location
-                val location_id = JSONObject(jsonLocation[0].toString()).getJSONObject("result_object")
-                    .get("location_id").toString()
+                val location_id =
+                    JSONObject(jsonLocation[0].toString()).getJSONObject("result_object")
+                        .get("location_id").toString()
                 // Instantiate the RequestQueue.
                 client = OkHttpClient()
 
@@ -144,7 +152,7 @@ class RestaurantListFragment : Fragment() {
                     .url("https://worldwide-restaurants.p.rapidapi.com/search")
                     .post(body)
                     .addHeader("content-type", "application/x-www-form-urlencoded")
-                    .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
+                    .addHeader("X-RapidAPI-Key", WORLDWIDE_RESTAURANTS_SEARCH_KEY)
                     .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
                     .build()
 
@@ -166,17 +174,27 @@ class RestaurantListFragment : Fragment() {
                     val resAddress = jsonRestaurant.get("address")
                     val resRanking = jsonRestaurant.get("ranking")
 
-                    val resImg = jsonRestaurant.getJSONObject("photo")
-                        .getJSONObject("images")
-                        .getJSONObject("large")
-                        .get("url")
+                    var resImg: String? = null
+
+                    try {
+                        resImg = jsonRestaurant.getJSONObject("photo")
+                            .getJSONObject("images")
+                            .getJSONObject("large")
+                            .get("url") as String
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                        resImg = ""
+                    }
+
                     val resCuisines = ArrayList<String>()
                     val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
                     Log.v("API", jsonCuisines.toString())
 
                     for (j in 0 until jsonCuisines.length()) {
 
-                        resCuisines.add(JSONObject(jsonCuisines[j].toString()).get("name").toString())
+                        resCuisines.add(
+                            JSONObject(jsonCuisines[j].toString()).get("name").toString()
+                        )
                     }
                     restaurants.add(
                         Restaurant(
@@ -196,8 +214,7 @@ class RestaurantListFragment : Fragment() {
                 }
                 val updateUI = Runnable {
                     restaurantAdapter.notifyDataSetChanged()
-                    if(shimmer.isShimmerVisible())
-                    {
+                    if (shimmer.isShimmerVisible()) {
                         shimmer.stopShimmer();
                         shimmer.setVisibility(View.GONE);
                     }
