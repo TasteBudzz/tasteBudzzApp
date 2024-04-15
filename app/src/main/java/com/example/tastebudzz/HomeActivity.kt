@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.RestaurantListFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,10 +30,23 @@ class HomeActivity : AppCompatActivity() {
         }
 
         replaceFragment((RestaurantListFragment()))
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
         auth = Firebase.auth
         // views and buttons
-        signoutButton = findViewById(R.id.signoutButton)
 
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
+            if (it.itemId == R.id.action_recipe ) {
+                    //replaceFragment(HomeFragment())
+                } else if (it.itemId == R.id.action_restaurant_search )
+               {
+                    replaceFragment(RestaurantListFragment())
+                } else if (it.itemId == R.id.action_reviews ) {
+                   // replaceFragment(SettingFragment())
+                }
+            true
+        }
+
+        signoutButton = findViewById(R.id.signoutButton)
         signoutButton.setOnClickListener{
             auth.signOut()
             val intent = Intent(this, SignInActivity::class.java)
