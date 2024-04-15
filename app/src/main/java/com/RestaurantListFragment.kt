@@ -10,19 +10,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.tastebudzz.R
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONException
 import org.json.JSONObject
 import java.net.URL
 import java.net.URLEncoder
 
 
 private const val TAG = "RestaurantList"
-private const val SEARCH_API_KEY = "58b0cefb99mshb83c40fdb417121p14b270jsn6cb2eae1e020"
+private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
@@ -55,14 +59,19 @@ class RestaurantListFragment : Fragment() {
         shimmer = view.findViewById(R.id.shimmer_view)
         shimmer.setVisibility(View.VISIBLE);
         shimmer.startShimmer();
+        view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh).setOnRefreshListener {
+            Thread(BackgroundFetchRestaurants()).start()
+            view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh).isRefreshing = false
+        }
         return  view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Call the new method within onViewCreated
-
         Thread(BackgroundFetchRestaurants()).start()
+
+
     }
 
     inner class BackgroundFetchRestaurants: Runnable {
@@ -125,7 +134,7 @@ class RestaurantListFragment : Fragment() {
             .build()
 
         var response = client.newCall(request).execute()
-        if (response.code() == 200 || true) {
+        try {
             val locationBody = response.body()!!.string()
             val jsonLocation = JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
             if (jsonLocation.length() > 0) {
@@ -178,20 +187,22 @@ class RestaurantListFragment : Fragment() {
 
                         resCuisines.add(JSONObject(jsonCuisines[j].toString()).get("name").toString())
                     }
+                    val restaurant = Restaurant(
+                        resId,
+                        resName as String,
+                        resImg as String,
+                        resDesc as String,
+                        resRating as String,
+                        resLog as String,
+                        resLat as String,
+                        resCuisines,
+                        resRanking as String,
+                        resNumReviews as String,
+                        resAddress as String
+                    )
+                    Log.e("RESTAURANT", restaurant.toString())
                     restaurants.add(
-                        Restaurant(
-                            resId,
-                            resName as String,
-                            resImg as String,
-                            resDesc as String,
-                            resRating as String,
-                            resLog as String,
-                            resLat as String,
-                            resCuisines,
-                            resRanking as String,
-                            resNumReviews as String,
-                            resAddress as String
-                        )
+                        restaurant
                     )
                 }
                 val updateUI = Runnable {
@@ -205,6 +216,8 @@ class RestaurantListFragment : Fragment() {
                 }
                 Handler(Looper.getMainLooper()).post((updateUI))
             }
+        } catch (exception: JSONException) {
+            Log.e("RESTAURANTS", exception.localizedMessage.toString())
         }
 
     }

@@ -12,6 +12,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Restaurant
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import org.json.JSONObject
 
 class RestaurantDetailActivity : AppCompatActivity() {
@@ -24,7 +26,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
 
     private lateinit var menuButton: Button
     private lateinit var addReviewButton: Button
-
+    private lateinit var allReviewsButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,7 +47,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
         desscriptionView = findViewById(R.id.restaurantDescription)
         addReviewButton = findViewById(R.id.reviewButton)
         menuButton = findViewById(R.id.menuButton)
-
+        allReviewsButton = findViewById(R.id.reviewsListButton)
         // set values
         nameView.text = selectedRestaurant.name
         Glide.with(this)
@@ -77,6 +79,23 @@ class RestaurantDetailActivity : AppCompatActivity() {
             intent.putExtra("RESTAURANT", selectedRestaurant)
             startActivity(intent)
         }
+
+        allReviewsButton.setOnClickListener {
+            val intent = Intent(this, RestaurantReviewsListActivity::class.java)
+            intent.putExtra("RESTAURANT", selectedRestaurant)
+            startActivity(intent)
+        }
+
+        findViewById<ImageView>(R.id.backBUtton).setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<ImageView>(R.id.logoutButton).setOnClickListener{
+            Firebase.auth.signOut()
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }
