@@ -10,5 +10,5 @@ data class FoodItem(
 
     val imageResId: Int
 
-): Serializable
+) : Serializable
 

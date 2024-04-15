@@ -8,11 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebudzz.R
 
-class FoodAdapter(private val foodItems: List<FoodItem>, private val onItemClick: (String) -> Unit) :
+class FoodAdapter(
+    private val foodItems: List<FoodItem>,
+    private val onItemClick: (String) -> Unit
+) :
     RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_food, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_food, parent, false)
         return FoodViewHolder(itemView)
     }
 
