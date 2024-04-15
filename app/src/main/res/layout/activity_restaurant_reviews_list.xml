@@ -28,6 +28,19 @@
             android:layout_alignParentEnd="true"
             />
     </RelativeLayout>
+    <TextView
+        android:id="@+id/recipesName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_margin="20dp"
+        android:text="Restaurant Reviews"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reviews_recycler_view"

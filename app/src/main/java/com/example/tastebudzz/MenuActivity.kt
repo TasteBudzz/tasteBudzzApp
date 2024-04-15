@@ -1,7 +1,10 @@
 package com.example.tastebudzz
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,21 +15,35 @@ import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 import com.Constants.WORLDWIDE_RESTAURANTS_SEARCH_KEY
+import com.Restaurant
+import com.bumptech.glide.Glide
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodAdapter
-
+    private lateinit var shimmer: ShimmerFrameLayout
+    private  lateinit var restaurantImage: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        val selectedRestaurant = intent.getSerializableExtra("RESTAURANT") as Restaurant
+
         // Retrieve the name and ID of the restaurant from the intent extras
-        val restaurantName = intent.getStringExtra("RESTAURANT_NAME")
-        val restaurantId = intent.getIntExtra("RESTAURANT_ID", -1) // Default value -1 if not found
+        val restaurantName = selectedRestaurant.name
+        val restaurantId =selectedRestaurant.id
         val textViewRestaurantName: TextView = findViewById(R.id.textViewRestaurantName)
-        textViewRestaurantName.text = restaurantName
+        textViewRestaurantName.text = "${restaurantName}'s Menu"
+
+        restaurantImage = findViewById(R.id.restaurantImage)
+        Glide.with(this)
+            .load(selectedRestaurant.restaurantImageURL)
+            .fitCenter()
+            .into(restaurantImage)
 
         // You can use restaurantId in your logic if needed
         Log.d("MenuActivity", "Restaurant Name : $restaurantName")
@@ -35,6 +52,22 @@ class MenuActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.menuRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        findViewById<ImageView>(R.id.backBUtton).setOnClickListener {
+            Log.d("TOP_NAV", "Cliked back")
+
+            val intent = Intent(this, RestaurantDetailActivity::class.java)
+            intent.putExtra("RESTAURANT", selectedRestaurant)
+            startActivity(intent)
+        }
+        findViewById<ImageView>(R.id.logoutButton).setOnClickListener{
+            Log.d("TOP_NAV", "Cliked log out")
+            Firebase.auth.signOut()
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
+        shimmer = findViewById(R.id.shimmer_view)
+        shimmer.setVisibility(View.VISIBLE);
+        shimmer.startShimmer();
         // Call the function to fetch food items from API
         fetchFoodItems(restaurantId)
     }
@@ -98,6 +131,11 @@ class MenuActivity : AppCompatActivity() {
 
                                 // Notify the adapter that the data set has changed
                                 adapter.notifyDataSetChanged()
+                                if(shimmer.isShimmerVisible())
+                                {
+                                    shimmer.stopShimmer();
+                                    shimmer.setVisibility(View.GONE);
+                                }
                             }
                         } else {
                             Log.d("MenuActivity", "No dishes found in the response.")

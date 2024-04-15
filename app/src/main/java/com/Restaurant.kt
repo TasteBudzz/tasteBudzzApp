@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class Restaurant (
 
-    var id: Int?,
+    var id: Int,
 
     var name: String?,
 

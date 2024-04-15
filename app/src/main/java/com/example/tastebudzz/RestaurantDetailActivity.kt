@@ -70,8 +70,10 @@ class RestaurantDetailActivity : AppCompatActivity() {
         desscriptionView.text = selectedRestaurant.description
 
         menuButton.setOnClickListener {
-
-            // TODO navigate to menu list
+            // Navigate to menu items
+            val intent = Intent(this, MenuActivity::class.java)
+            intent.putExtra("RESTAURANT", selectedRestaurant)
+            startActivity(intent)
         }
         addReviewButton.setOnClickListener {
             // Navigate to Details screen and pass selected restaurant
