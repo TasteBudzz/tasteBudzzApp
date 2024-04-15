@@ -12,13 +12,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
         <ImageView
             android:id="@+id/app_icon"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_margin="20dp"
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/app_icon" />
 
@@ -66,14 +67,74 @@
             android:ems="10"
             android:text="Don't have an account yet? Sign up." />
 
-        <Button
-            android:id="@+id/signinButton"
-            android:layout_width="150dp"
-            android:layout_margin="20dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="SIGN IN" />
+        <RelativeLayout
+            android:layout_width="match_parent"
 
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/signinButton"
+                android:layout_width="150dp"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="visible"
+                android:text="SIGN IN" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_toRightOf="@+id/signinButton"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+
+                android:background="@color/app_grey"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="OR"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+
+                android:layout_height="1dp"
+                android:layout_weight="2"
+                android:background="@color/app_grey"/>
+        </LinearLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/google_sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="signInGoogle"
+            android:padding="20dp"
+            android:layout_margin="50dp"
+            android:textAllCaps="false"
+            android:background="@color/white"
+            android:drawableStart="@drawable/common_google_signin_btn_icon_light"
+            android:text="Sign in with Google"
+            android:layout_marginBottom="50dp" />
 
     </LinearLayout>
 </LinearLayout>

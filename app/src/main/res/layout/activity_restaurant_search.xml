@@ -9,9 +9,10 @@
     android:layout_weight="5"
     tools:context=".HomeActivity">
 
-    <Button
+    <ImageView
         android:id="@+id/signoutButton"
         android:layout_width="wrap_content"
+        android:src="@drawable/baseline_logout_24"
         android:layout_height="wrap_content"
         android:text="Log Out"
         app:layout_constraintBottom_toBottomOf="@+id/restaurant_frame_layout"

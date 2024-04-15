@@ -1,5 +1,6 @@
 package com.example.tastebudzz
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -42,6 +43,9 @@ class RestaurantDetailActivity : AppCompatActivity() {
         rankingView = findViewById(R.id.restaurantRanking)
         cuisinesView = findViewById(R.id.restaurantCuisines)
         desscriptionView = findViewById(R.id.restaurantDescription)
+        addReviewButton = findViewById(R.id.reviewButton)
+        menuButton = findViewById(R.id.menuButton)
+
         // set values
         nameView.text = selectedRestaurant.name
         Glide.with(this)
@@ -64,10 +68,14 @@ class RestaurantDetailActivity : AppCompatActivity() {
         desscriptionView.text = selectedRestaurant.description
 
         menuButton.setOnClickListener {
+
             // TODO navigate to menu list
         }
         addReviewButton.setOnClickListener {
-            // TODO navigate to add review
+            // Navigate to Details screen and pass selected restaurant
+            val intent = Intent(this, RestaurantReviewActivity::class.java)
+            intent.putExtra("RESTAURANT", selectedRestaurant)
+            startActivity(intent)
         }
 
     }

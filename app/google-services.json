@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "689639059323",
+    "firebase_url": "https://taste-budzz-default-rtdb.firebaseio.com",
     "project_id": "taste-budzz",
     "storage_bucket": "taste-budzz.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.tastebudzz"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "689639059323-6i4jet9s82vvrv153kuqr48tm56sgkup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tastebudzz",
+            "certificate_hash": "9916f8affef2609a4e0854dfc64fef1556bdb09a"
+          }
+        },
+        {
+          "client_id": "689639059323-jnpupcjjbid19jts1f0bk0a5p7770e8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCN6uy8jvQNR5iWWr_XTMCYBHgVWn3W4Gs"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689639059323-jnpupcjjbid19jts1f0bk0a5p7770e8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
