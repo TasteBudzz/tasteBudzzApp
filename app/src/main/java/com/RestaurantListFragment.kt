@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebudzz.R
+import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -21,15 +22,17 @@ import java.net.URLEncoder
 
 
 private const val TAG = "RestaurantList"
-private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
+private const val SEARCH_API_KEY = "58b0cefb99mshb83c40fdb417121p14b270jsn6cb2eae1e020"
 private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
 class RestaurantListFragment : Fragment() {
 
+
     private val restaurants = mutableListOf<Restaurant>()
     private lateinit var restaurantsRecyclerView: RecyclerView
     private lateinit var restaurantAdapter: RestaurantAdapter
+    private lateinit var shimmer: ShimmerFrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,11 +52,11 @@ class RestaurantListFragment : Fragment() {
         restaurantsRecyclerView.setHasFixedSize(true)
         restaurantAdapter =  RestaurantAdapter(view.context, restaurants)
         restaurantsRecyclerView.adapter = restaurantAdapter
-
-
+        shimmer = view.findViewById(R.id.shimmer_view)
+        shimmer.setVisibility(View.VISIBLE);
+        shimmer.startShimmer();
         return  view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -117,80 +120,91 @@ class RestaurantListFragment : Fragment() {
             .url("https://worldwide-restaurants.p.rapidapi.com/typeahead")
             .post(body)
             .addHeader("content-type", "application/x-www-form-urlencoded")
-            .addHeader("X-RapidAPI-Key", "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335")
+            .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
             .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
             .build()
 
         var response = client.newCall(request).execute()
-        var locationBody = response.body()!!.string()
-        val jsonLocation = JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
-        if (jsonLocation.length() > 0) {
-            //use first location
-            val location_id = JSONObject(jsonLocation[0].toString()).getJSONObject("result_object").get("location_id").toString()
-            // Instantiate the RequestQueue.
-            client = OkHttpClient()
+        if (response.code() == 200 || true) {
+            val locationBody = response.body()!!.string()
+            val jsonLocation = JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
+            if (jsonLocation.length() > 0) {
+                //use first location
+                val location_id = JSONObject(jsonLocation[0].toString()).getJSONObject("result_object")
+                    .get("location_id").toString()
+                // Instantiate the RequestQueue.
+                client = OkHttpClient()
 
-            mediaType = MediaType.parse("application/x-www-form-urlencoded")
-            body = RequestBody.create(
-                mediaType,
-                "language=en_US&location_id=${location_id}&currency=USD&offset=0"
-            )
-            request = Request.Builder()
-                .url("https://worldwide-restaurants.p.rapidapi.com/search")
-                .post(body)
-                .addHeader("content-type", "application/x-www-form-urlencoded")
-                .addHeader("X-RapidAPI-Key", "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335")
-                .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
-                .build()
-
-            response = client.newCall(request).execute()
-            val responseBody = response.body()!!.string()
-            Log.v("API", responseBody)
-
-            var jsonResponse = JSONObject(responseBody)
-            var jsonRestaurants = jsonResponse.getJSONObject("results").getJSONArray("data")
-            for (i in 0 until jsonRestaurants.length()) {
-                val jsonRestaurant = JSONObject(jsonRestaurants[i].toString())
-                val resName = jsonRestaurant.get("name")
-                val resDesc = jsonRestaurant.get("description")
-                val resLog = jsonRestaurant.get("longitude")
-                val resLat = jsonRestaurant.get("latitude")
-                val resRating = jsonRestaurant.get("rating")
-                val resNumReviews = jsonRestaurant.get("num_reviews")
-                val resAddress = jsonRestaurant.get("address")
-                val resRanking = jsonRestaurant.get("ranking")
-
-                val resImg = jsonRestaurant.getJSONObject("photo")
-                    .getJSONObject("images")
-                    .getJSONObject("large")
-                    .get("url")
-                val resCuisines = ArrayList<String>()
-                val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
-                Log.v("API", jsonCuisines.toString())
-
-                for (j in 0 until jsonCuisines.length()) {
-
-                    resCuisines.add(JSONObject(jsonCuisines[j].toString()).get("name").toString())
-                }
-                restaurants.add(
-                    Restaurant(
-                        resName as String,
-                        resImg as String,
-                        resDesc as String,
-                        resRating as String,
-                        resLog as String,
-                        resLat as String,
-                        resCuisines,
-                        resRanking as String,
-                        resNumReviews as String,
-                        resAddress as String
-                    )
+                mediaType = MediaType.parse("application/x-www-form-urlencoded")
+                body = RequestBody.create(
+                    mediaType,
+                    "language=en_US&location_id=${location_id}&currency=USD&offset=0"
                 )
+                request = Request.Builder()
+                    .url("https://worldwide-restaurants.p.rapidapi.com/search")
+                    .post(body)
+                    .addHeader("content-type", "application/x-www-form-urlencoded")
+                    .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
+                    .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
+                    .build()
+
+                response = client.newCall(request).execute()
+                val responseBody = response.body()!!.string()
+                Log.v("API", responseBody)
+
+                var jsonResponse = JSONObject(responseBody)
+                var jsonRestaurants = jsonResponse.getJSONObject("results").getJSONArray("data")
+                for (i in 0 until jsonRestaurants.length()) {
+                    val jsonRestaurant = JSONObject(jsonRestaurants[i].toString())
+                    val resId = jsonRestaurant.get("location_id").toString().toInt()
+                    val resName = jsonRestaurant.get("name")
+                    val resDesc = jsonRestaurant.get("description")
+                    val resLog = jsonRestaurant.get("longitude")
+                    val resLat = jsonRestaurant.get("latitude")
+                    val resRating = jsonRestaurant.get("rating")
+                    val resNumReviews = jsonRestaurant.get("num_reviews")
+                    val resAddress = jsonRestaurant.get("address")
+                    val resRanking = jsonRestaurant.get("ranking")
+
+                    val resImg = jsonRestaurant.getJSONObject("photo")
+                        .getJSONObject("images")
+                        .getJSONObject("large")
+                        .get("url")
+                    val resCuisines = ArrayList<String>()
+                    val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
+                    Log.v("API", jsonCuisines.toString())
+
+                    for (j in 0 until jsonCuisines.length()) {
+
+                        resCuisines.add(JSONObject(jsonCuisines[j].toString()).get("name").toString())
+                    }
+                    restaurants.add(
+                        Restaurant(
+                            resId,
+                            resName as String,
+                            resImg as String,
+                            resDesc as String,
+                            resRating as String,
+                            resLog as String,
+                            resLat as String,
+                            resCuisines,
+                            resRanking as String,
+                            resNumReviews as String,
+                            resAddress as String
+                        )
+                    )
+                }
+                val updateUI = Runnable {
+                    restaurantAdapter.notifyDataSetChanged()
+                    if(shimmer.isShimmerVisible())
+                    {
+                        shimmer.stopShimmer();
+                        shimmer.setVisibility(View.GONE);
+                    }
+
+                }
+                Handler(Looper.getMainLooper()).post((updateUI))
             }
-            val updateUI = Runnable {
-                restaurantAdapter.notifyDataSetChanged()
-            }
-            Handler(Looper.getMainLooper()).post((updateUI))
         }
 
     }
