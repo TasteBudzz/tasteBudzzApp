@@ -11,9 +11,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
@@ -116,6 +118,14 @@ class SignUpActivity : AppCompatActivity() {
                                 ?.addOnCompleteListener{ task ->
                                     if (task.isSuccessful) {
                                         Log.d("AUTH", "updateProfile:success")
+                                        val db_user = User(user.uid, firstName, lastName, email)
+
+                                        // write restuaurat to firebase db
+                                        val database = Firebase.database.reference
+
+                                        database.child("users").child(db_user.id).setValue(db_user)
+
+
                                     } else {
                                         Log.d("AUTH", "updateProfile:failure")
 

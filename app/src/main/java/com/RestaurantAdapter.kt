@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tastebudzz.R
 import com.example.tastebudzz.RestaurantDetailActivity
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 private const val TAG = "RestaurantAdapter"
 
@@ -24,8 +26,8 @@ class RestaurantAdapter(private val context: Context, private val restaurants: L
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article = restaurants[position]
-        holder.bind(article)
+        val restaurant = restaurants[position]
+        holder.bind(restaurant)
     }
 
     override fun getItemCount() = restaurants.size
@@ -56,6 +58,11 @@ class RestaurantAdapter(private val context: Context, private val restaurants: L
         override fun onClick(v: View?) {
             // Get selected restuarnant
             val restaurant = restaurants[absoluteAdapterPosition]
+
+            // write restuaurat to firebase db
+            val database = Firebase.database.reference
+
+            database.child("restaurants").child(restaurant.id.toString()).setValue(restaurant)
 
             // Navigate to Details screen and pass selected restaurant
             val intent = Intent(context, RestaurantDetailActivity::class.java)
