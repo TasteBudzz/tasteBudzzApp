@@ -68,8 +68,9 @@ class RestaurantDetailActivity : AppCompatActivity() {
             menuButton.setOnClickListener {
                 // Create an intent to start MenuActivity
                 val menuIntent = Intent(this@RestaurantDetailActivity, MenuActivity::class.java)
-                // Pass the name of the restaurant as an extra
+                // Pass both the name and ID of the restaurant as extras
                 menuIntent.putExtra("RESTAURANT_NAME", selectedRestaurant.name)
+                menuIntent.putExtra("RESTAURANT_ID", selectedRestaurant.id)
                 // Start the MenuActivity
                 startActivity(menuIntent)
             }

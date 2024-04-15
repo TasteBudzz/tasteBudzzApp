@@ -18,25 +18,30 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        // Retrieve the name of the restaurant from the intent extras
+        // Retrieve the name and ID of the restaurant from the intent extras
         val restaurantName = intent.getStringExtra("RESTAURANT_NAME")
-        // val restaurantName = "Your Restaurant Name" // Replace this with actual restaurant name
+        val restaurantId = intent.getIntExtra("RESTAURANT_ID", -1) // Default value -1 if not found
         val textViewRestaurantName: TextView = findViewById(R.id.textViewRestaurantName)
         textViewRestaurantName.text = restaurantName
+
+        // You can use restaurantId in your logic if needed
+        Log.d("MenuActivity", "Restaurant Name : $restaurantName")
+        Log.d("MenuActivity", "Restaurant ID: $restaurantId")
 
         recyclerView = findViewById(R.id.menuRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = FoodAdapter(getFoodItems()) { foodName ->
             // Handle item click here, for example, navigate to the next screen
-//            val intent = Intent(this, NextActivity::class.java)
-//            intent.putExtra("foodName", foodName)
-//            startActivity(intent)
+            // val intent = Intent(this, NextActivity::class.java)
+            // intent.putExtra("foodName", foodName)
+            // startActivity(intent)
             // Log the clicked food item name
             Log.d("MenuActivity", "Clicked food item: $foodName")
         }
         recyclerView.adapter = adapter
     }
 
+    // TODO: Replace with Actual API Call
     // Function to generate dummy food items (Replace this with actual API call)
     private fun getFoodItems(): List<FoodItem> {
         val foodItems = mutableListOf<FoodItem>()
