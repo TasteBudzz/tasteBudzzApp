@@ -60,8 +60,13 @@ class RestaurantListFragment : Fragment() {
         shimmer.setVisibility(View.VISIBLE);
         shimmer.startShimmer();
         view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh).setOnRefreshListener {
+            restaurants.clear()
+            restaurantAdapter.notifyDataSetChanged()
+            shimmer.setVisibility(View.VISIBLE);
+            shimmer.startShimmer();
             Thread(BackgroundFetchRestaurants()).start()
             view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh).isRefreshing = false
+
         }
         return  view
     }
