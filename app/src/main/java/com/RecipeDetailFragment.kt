@@ -41,7 +41,7 @@ class RecipeFragment : Fragment() {
                     val responseData = response.body()?.string()
                     if (responseData != null) {
                         Log.d("RecipeDetails", "Response Data: $responseData")
-                        // Here you can convert the response string to a JSON object if needed,
+                        // Here you can convert the response string to a JSON object if needed, for now just as it is
                         // and log specific values
                     }
                 }
