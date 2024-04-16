@@ -33,7 +33,27 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        try {
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
+            if (it.itemId == R.id.action_recipe ) {
+                Log.e("BOTTOM_NAV", "Selected your recipes screen")
+
+                replaceFragment(SavedRecipesFragment())
+
+            } else if (it.itemId == R.id.action_restaurant_search )
+            {
+                Log.e("BOTTOM_NAV", "Selected your restaurant screen")
+
+                replaceFragment(RestaurantListFragment())
+            } else if (it.itemId == R.id.action_reviews ) {
+                Log.e("BOTTOM_NAV", "Selected your reviews screen")
+
+                replaceFragment(UserReviewsFragment())
+
+            }
+            true
+        }
+
+        // navigate to correct fragment
             var dest = intent.getSerializableExtra("DEST")
             if (dest != null) {
                 dest = dest as Int
@@ -42,49 +62,25 @@ class HomeActivity : AppCompatActivity() {
                 if (dest == 1) {
                     Log.e("BOTTOM_NAV", "Selected your recipes screen")
 
-                    replaceFragment(SavedRecipesFragment())
+                    findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_recipe
                 } else if (dest == 2) {
                     Log.e("BOTTOM_NAV", "Selected your restaurant screen")
 
-                    replaceFragment(RestaurantListFragment())
+                    findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
+
                 } else if (dest == 3) {
                     Log.e("BOTTOM_NAV", "Selected your reviews screen")
-                    replaceFragment(UserReviewsFragment())
+                    findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_reviews
+
                 }
             } else {
-                replaceFragment((SavedRecipesFragment()))
+                findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
             }
-        } catch (error: Exception) {
-            replaceFragment((RestaurantListFragment()))
 
-        }
-        replaceFragment((SavedRecipesFragment()))
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
         auth = Firebase.auth
         // views and buttons
 
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
-            if (it.itemId == R.id.action_recipe ) {
-                Log.e("BOTTOM_NAV", "Selected your recipes screen")
 
-                replaceFragment(SavedRecipesFragment())
-                findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_recipe
-
-            } else if (it.itemId == R.id.action_restaurant_search )
-               {
-                   Log.e("BOTTOM_NAV", "Selected your restaurant screen")
-                   findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
-
-                   replaceFragment(RestaurantListFragment())
-                } else if (it.itemId == R.id.action_reviews ) {
-                    Log.e("BOTTOM_NAV", "Selected your reviews screen")
-                findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_reviews
-
-                replaceFragment(UserReviewsFragment())
-
-            }
-            true
-        }
 
         signoutButton = findViewById(R.id.signoutButton)
         signoutButton.setOnClickListener{
