@@ -184,10 +184,8 @@ https://github.com/TasteBudzz/tasteBudzzApp/blob/development/Tast%20Budzz%201.mp
 Pending:
 - show the nutrition and recipe info for menu item
 - allo users to edit, save, and delete recipes/nutrition infos 
-
-[Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
+https://youtu.be/z4C690i2H08
 ## App Demo Video
 
 - Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+https://youtu.be/z4C690i2H08
