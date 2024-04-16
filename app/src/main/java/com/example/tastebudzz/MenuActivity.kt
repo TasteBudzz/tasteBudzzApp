@@ -123,9 +123,13 @@ class MenuActivity : AppCompatActivity() {
                             // Update UI on the main thread
                             runOnUiThread {
                                 // Initialize the adapter with fetched food items
-                                adapter = FoodAdapter(foodItems) { foodName ->
-                                    // TODO: Handle item click here, for example, navigate to the next screen
-                                    Log.d("MenuActivity", "Clicked food item: $foodName")
+                                adapter = FoodAdapter(foodItems) { foodName, isRecipeClick ->
+                                    if (isRecipeClick) {
+                                        fetchRecipeForFood(foodName)
+                                    } else {
+                                        Log.d("MenuActivity", "Food item clicked: $foodName")
+                                        // Handle normal food item click, maybe show details
+                                    }
                                 }
                                 recyclerView.adapter = adapter
 
@@ -148,4 +152,8 @@ class MenuActivity : AppCompatActivity() {
             }
         })
     }
+}
+
+private fun fetchRecipeForFood(foodName: String) {
+    Log.d("MenuActivity", "Fetch recipe for: $foodName")
 }

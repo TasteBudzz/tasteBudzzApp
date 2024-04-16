@@ -46,6 +46,14 @@ android:padding="16dp">
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="Price: $0.00" />
+
+    <Button
+        android:id="@+id/buttonGetRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Recipe"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
 </LinearLayout>
 </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
