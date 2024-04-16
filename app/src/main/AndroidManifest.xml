@@ -23,6 +23,9 @@
             android:name=".RestaurantReviewActivity"
             android:exported="false" />
         <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".data.ReviewEditActivity"
             android:exported="false" />
         <activity
@@ -31,6 +34,7 @@
         <activity
             android:name=".RestaurantDetailActivity"
             android:exported="false" />
+
         <activity
             android:name=".HomeActivity"
             android:exported="true">
