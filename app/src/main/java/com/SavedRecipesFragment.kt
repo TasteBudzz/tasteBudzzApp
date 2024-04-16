@@ -26,15 +26,15 @@ class SavedRecipesFragment : Fragment() {
         // Sample data
         val savedRecipes = listOf(
             SavedRecipe(
-                "Recipe 1",
-                "Restaurant A",
+                "Pasta Recipe",
+                "Rodizio's Restaurant",
                 listOf("Ingredient A1", "Ingredient A2"),
                 "Instructions for Recipe 1",
                 "Nutrition info for Recipe 1"
             ),
             SavedRecipe(
-                "Recipe 2",
-                "Restaurant B",
+                "Grandma's Pizza Recipe",
+                "Luigis Restaurant",
                 listOf("Ingredient B1", "Ingredient B2"),
                 "Instructions for Recipe 2",
                 "Nutrition info for Recipe 2"
