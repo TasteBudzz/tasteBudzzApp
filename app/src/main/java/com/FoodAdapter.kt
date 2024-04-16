@@ -52,7 +52,7 @@ class FoodAdapter(
     override fun getItemCount() = foodItems.size
 
     class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val parentVew: MaterialCardView = itemView.findViewById(R.id.parent_view)
+        val parentVew: MaterialCardView = itemView.findViewById(R.id.parent_food)
         val foodImageView: ImageView = itemView.findViewById(R.id.imageFood)
         val foodNameTextView: TextView = itemView.findViewById(R.id.textFoodName)
         val priceTextView: TextView = itemView.findViewById(R.id.textPrice)

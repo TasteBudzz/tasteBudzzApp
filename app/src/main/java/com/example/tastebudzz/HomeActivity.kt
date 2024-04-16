@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity() {
             replaceFragment((RestaurantListFragment()))
 
         }
-
+        replaceFragment((SavedRecipesFragment()))
         findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
         auth = Firebase.auth
         // views and buttons
@@ -67,16 +67,22 @@ class HomeActivity : AppCompatActivity() {
             if (it.itemId == R.id.action_recipe ) {
                 Log.e("BOTTOM_NAV", "Selected your recipes screen")
 
-                //replaceFragment(HomeFragment())
-                } else if (it.itemId == R.id.action_restaurant_search )
+                replaceFragment(SavedRecipesFragment())
+                findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_recipe
+
+            } else if (it.itemId == R.id.action_restaurant_search )
                {
                    Log.e("BOTTOM_NAV", "Selected your restaurant screen")
+                   findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
 
                    replaceFragment(RestaurantListFragment())
                 } else if (it.itemId == R.id.action_reviews ) {
                     Log.e("BOTTOM_NAV", "Selected your reviews screen")
-                   replaceFragment(UserReviewsFragment())
-                }
+                findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_reviews
+
+                replaceFragment(UserReviewsFragment())
+
+            }
             true
         }
 

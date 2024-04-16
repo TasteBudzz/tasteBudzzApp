@@ -28,11 +28,12 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var adapter: FoodAdapter
     private lateinit var shimmer: ShimmerFrameLayout
     private  lateinit var restaurantImage: ImageView
+    private  lateinit var selectedRestaurant: Restaurant
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        val selectedRestaurant = intent.getSerializableExtra("RESTAURANT") as Restaurant
+        selectedRestaurant = intent.getSerializableExtra("RESTAURANT") as Restaurant
 
         // Retrieve the name and ID of the restaurant from the intent extras
         val restaurantName = selectedRestaurant.name
@@ -124,7 +125,7 @@ class MenuActivity : AppCompatActivity() {
                             // Update UI on the main thread
                             runOnUiThread {
                                 // Initialize the adapter with fetched food items
-                                adapter = FoodAdapter(context, foodItems) { foodName, isRecipeClick ->
+                                adapter = FoodAdapter(context,selectedRestaurant, foodItems) { foodName, isRecipeClick ->
                                     if (isRecipeClick) {
                                         fetchRecipeForFood(foodName)
                                     } else {

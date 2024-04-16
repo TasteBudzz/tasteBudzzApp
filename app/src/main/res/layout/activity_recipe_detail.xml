@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RecipeDetailActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +18,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/backBUtton"
@@ -37,17 +37,23 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
         <ImageView
             android:id="@+id/recipeImage"
             android:layout_width="match_parent"
+            android:src="@drawable/placeholder_food_image"
             android:layout_height="150dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -62,7 +68,7 @@
             android:gravity="center"
             android:layout_marginEnd="10dp"
             android:layout_margin="20dp"
-            android:text="Title"
+            android:text="Recipe Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
             android:textColor="@color/white"
             android:textStyle="bold" />
@@ -82,15 +88,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
+            android:textIsSelectable="true"
             android:padding="20dp"
             android:layout_marginEnd="10dp"
-            android:text="Nutrition Info List"
+            android:text="@string/dummy_nutrition_string"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
             android:textColor="@color/white" />
 
 
 
         </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     </ScrollView>
 
 
@@ -105,7 +113,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Save Recipe"
-
+            android:id="@+id/saveRecipeButton"
             android:layout_gravity="center"
             />
         <com.google.android.material.bottomnavigation.BottomNavigationView
