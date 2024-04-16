@@ -166,6 +166,10 @@ Though each has their drawback. For now, will pursue the second/third option and
 
 
 # Milestone 3 - Build Sprint 2 (Unit 9)
+https://youtu.be/z4C690i2H08
+- ![demovideo]([https://github.com/TasteBudzz/tasteBudzzApp/blob/main/app.gif](https://youtu.be/z4C690i2H08
+))
+
 
 ## GitHub Project board
 https://github.com/TasteBudzz/tasteBudzzApp/blob/development/Tast%20Budzz%201.mp4
