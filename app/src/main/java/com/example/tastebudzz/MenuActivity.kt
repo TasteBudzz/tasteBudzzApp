@@ -1,5 +1,6 @@
 package com.example.tastebudzz
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -69,11 +70,11 @@ class MenuActivity : AppCompatActivity() {
         shimmer.setVisibility(View.VISIBLE);
         shimmer.startShimmer();
         // Call the function to fetch food items from API
-        fetchFoodItems(restaurantId)
+        fetchFoodItems(this, restaurantId)
     }
 
     // Function to fetch food items from the API based on restaurant ID
-    private fun fetchFoodItems(restaurantId: Int) {
+    private fun fetchFoodItems(context: Context, restaurantId: Int) {
         val client = OkHttpClient()
 
         val mediaType = MediaType.parse("application/x-www-form-urlencoded")
@@ -123,9 +124,13 @@ class MenuActivity : AppCompatActivity() {
                             // Update UI on the main thread
                             runOnUiThread {
                                 // Initialize the adapter with fetched food items
-                                adapter = FoodAdapter(foodItems) { foodName ->
-                                    // TODO: Handle item click here, for example, navigate to the next screen
-                                    Log.d("MenuActivity", "Clicked food item: $foodName")
+                                adapter = FoodAdapter(context, foodItems) { foodName, isRecipeClick ->
+                                    if (isRecipeClick) {
+                                        fetchRecipeForFood(foodName)
+                                    } else {
+                                        Log.d("MenuActivity", "Food item clicked: $foodName")
+                                        // Handle normal food item click, maybe show details
+                                    }
                                 }
                                 recyclerView.adapter = adapter
 
@@ -148,4 +153,8 @@ class MenuActivity : AppCompatActivity() {
             }
         })
     }
+}
+
+private fun fetchRecipeForFood(foodName: String) {
+    Log.d("MenuActivity", "Fetch recipe for: $foodName")
 }
