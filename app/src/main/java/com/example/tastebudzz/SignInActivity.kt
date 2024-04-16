@@ -109,6 +109,7 @@ lateinit var progressBar: ProgressBar
 
         // sign in with google
         googleSignIn.setOnClickListener {
+            Log.e("AUTH", "Clicked google sign in")
             oneTapClient = Identity.getSignInClient(this)
             signInRequest = BeginSignInRequest.builder()
                 .setGoogleIdTokenRequestOptions(
