@@ -45,6 +45,7 @@ class SavedRecipesFragment : Fragment() {
         adapter = SavedRecipesAdapter(savedRecipes) { savedRecipe ->
             // Handle item click here, e.g., navigate to the specific recipe page
         }
+        adapter.notifyDataSetChanged()
         recyclerView.adapter = adapter
         return view
     }

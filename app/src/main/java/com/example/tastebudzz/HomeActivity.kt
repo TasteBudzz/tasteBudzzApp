@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.RestaurantListFragment
 import com.Review
+import com.SavedRecipesFragment
 import com.example.tastebudzz.data.UserReviewsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -41,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
                 if (dest == 1) {
                     Log.e("BOTTOM_NAV", "Selected your recipes screen")
 
-                    //replaceFragment(HomeFragment())
+                    replaceFragment(SavedRecipesFragment())
                 } else if (dest == 2) {
                     Log.e("BOTTOM_NAV", "Selected your restaurant screen")
 
@@ -51,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(UserReviewsFragment())
                 }
             } else {
-                replaceFragment((RestaurantListFragment()))
+                replaceFragment((SavedRecipesFragment()))
             }
         } catch (error: Exception) {
             replaceFragment((RestaurantListFragment()))
