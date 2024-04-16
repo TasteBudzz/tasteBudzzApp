@@ -34,7 +34,7 @@ class FoodAdapter(
             onItemClick(currentItem.name, false)
         }
         holder.getRecipeButton.setOnClickListener {
-            val bundle = Bundle.apply {
+            val bundle = Bundle().apply {
                 putString("foodName", currentItem.name)
             }
             //handle navigation to RecipeFragment when clicked

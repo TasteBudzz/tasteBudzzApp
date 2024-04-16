@@ -31,7 +31,7 @@ class RecipeFragment : Fragment() {
                 val request = Request.Builder()
                     .url("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=$foodName&number=1")
                     .get()
-                    .addHeader("X-RapidAPI-Key", "5ad5e6455amshcda3c41c76d60b2p13802fjsn46813a591e24")
+                    .addHeader("X-RapidAPI-Key", "5ad5e6455amshcda3c41c76d60b2p13802fjsn46813a591e")
                     .addHeader("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
                     .build()
 
