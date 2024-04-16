@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.RestaurantListFragment
+import com.SavedRecipesFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -28,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
-        replaceFragment((RestaurantListFragment()))
+        replaceFragment((SavedRecipesFragment()))
         auth = Firebase.auth
         // views and buttons
         signoutButton = findViewById(R.id.signoutButton)
