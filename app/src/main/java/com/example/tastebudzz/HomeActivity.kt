@@ -2,6 +2,7 @@ package com.example.tastebudzz
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -10,10 +11,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.RestaurantListFragment
+import com.Review
+import com.example.tastebudzz.data.UserReviewsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class HomeActivity : AppCompatActivity() {
     lateinit var signoutButton: ImageView
@@ -28,20 +32,49 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        try {
+            var dest = intent.getSerializableExtra("DEST")
+            if (dest != null) {
+                dest = dest as Int
+                Log.e("BOTTOM_NAV", "Selected id ${dest}")
 
-        replaceFragment((RestaurantListFragment()))
+                if (dest == 1) {
+                    Log.e("BOTTOM_NAV", "Selected your recipes screen")
+
+                    //replaceFragment(HomeFragment())
+                } else if (dest == 2) {
+                    Log.e("BOTTOM_NAV", "Selected your restaurant screen")
+
+                    replaceFragment(RestaurantListFragment())
+                } else if (dest == 3) {
+                    Log.e("BOTTOM_NAV", "Selected your reviews screen")
+                    replaceFragment(UserReviewsFragment())
+                }
+            } else {
+                replaceFragment((RestaurantListFragment()))
+            }
+        } catch (error: Exception) {
+            replaceFragment((RestaurantListFragment()))
+
+        }
+
         findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_restaurant_search
         auth = Firebase.auth
         // views and buttons
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
             if (it.itemId == R.id.action_recipe ) {
-                    //replaceFragment(HomeFragment())
+                Log.e("BOTTOM_NAV", "Selected your recipes screen")
+
+                //replaceFragment(HomeFragment())
                 } else if (it.itemId == R.id.action_restaurant_search )
                {
-                    replaceFragment(RestaurantListFragment())
+                   Log.e("BOTTOM_NAV", "Selected your restaurant screen")
+
+                   replaceFragment(RestaurantListFragment())
                 } else if (it.itemId == R.id.action_reviews ) {
-                   // replaceFragment(SettingFragment())
+                    Log.e("BOTTOM_NAV", "Selected your reviews screen")
+                   replaceFragment(UserReviewsFragment())
                 }
             true
         }

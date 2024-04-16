@@ -109,10 +109,11 @@ class RestaurantReviewActivity : AppCompatActivity() {
             if (validReview) {
                 // add review to db
                 val database = Firebase.database.reference
-                val reviewData = Review(user_id, restaurantId, rating, review, Firebase.auth.currentUser!!.displayName,
+                val revieKey = database.push().key
+                val reviewData = Review(revieKey.toString(), user_id, restaurantId, rating, review, Firebase.auth.currentUser!!.displayName,
                     System.currentTimeMillis()
                 )
-                database.child("reviews").push().setValue(reviewData)
+                database.child("reviews").child(revieKey.toString()).setValue(reviewData)
                 // Navigate to Details screen and pass selected restaurant
                 val intent = Intent(this, RestaurantDetailActivity::class.java)
                 intent.putExtra("RESTAURANT", selectedRestaurant)

@@ -99,6 +99,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
             android:textColor="@color/white" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/restaurantCuisines"
         android:layout_width="match_parent"
@@ -127,10 +128,5 @@
         android:backgroundTint="@color/app_accent"
         android:layout_height="wrap_content"
         android:text="See All Reviews" />
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent" />
+
 </LinearLayout>

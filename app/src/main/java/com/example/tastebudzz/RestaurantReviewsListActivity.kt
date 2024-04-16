@@ -75,27 +75,30 @@ class RestaurantReviewsListActivity : AppCompatActivity() {
     }
     private fun getReivewsData() {
         dbRef = FirebaseDatabase.getInstance().getReference("reviews")
+        val restaurantReviews = dbRef.orderByChild("restaurantId").equalTo(restaurant.id.toString())
 
-        dbRef.addValueEventListener(object : ValueEventListener {
+        restaurantReviews.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     reviews.clear()
                     for (snapshot in dataSnapshot.children) {
+                            Log.e("DB", snapshot.value.toString())
+                            val ratingValue = (snapshot.child("rating").value as Number).toDouble()
+                            val timestampValue =
+                                (snapshot.child("timestamp").value as Number).toLong()
+                            val review = Review(
+                                snapshot.child("reviewId").value.toString(),
+                                snapshot.child("userId").value.toString(),
 
-                        Log.e("DB", snapshot.value.toString())
-                        val ratingValue = (snapshot.child("rating").value as Number).toDouble()
-                        val timestampValue = (snapshot.child("timestamp").value as Number).toLong()
-                        val review = Review(
-                            snapshot.child("userId").value.toString(),
-
-                            snapshot.child("restaurantId").value.toString(),
-                            ratingValue,
-                            snapshot.child("comment").value.toString(),
-                            snapshot.child("reviewerName").value.toString(),
-                            timestampValue,
+                                snapshot.child("restaurantId").value.toString(),
+                                ratingValue,
+                                snapshot.child("comment").value.toString(),
+                                snapshot.child("reviewerName").value.toString(),
+                                timestampValue,
                             )
-                        reviews.add(review)
-                        Log.e("DB", review.toString())
+                            reviews.add(review)
+                            Log.e("DB", review.toString())
+
                     }
                     reviewAdapter.notifyDataSetChanged()
                     Log.e("DB", "Firebase DB Reivews Accessed Successfully")

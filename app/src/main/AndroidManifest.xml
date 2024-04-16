@@ -23,6 +23,12 @@
             android:name=".RestaurantReviewActivity"
             android:exported="false" />
         <activity
+            android:name=".data.ReviewEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".data.ReviewDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".RestaurantDetailActivity"
             android:exported="false" />
         <activity
