@@ -166,20 +166,26 @@ Though each has their drawback. For now, will pursue the second/third option and
 
 
 # Milestone 3 - Build Sprint 2 (Unit 9)
+https://youtu.be/z4C690i2H08
+- ![demovideo]([https://github.com/TasteBudzz/tasteBudzzApp/blob/main/app.gif](https://youtu.be/z4C690i2H08
+))
+
 
 ## GitHub Project board
-
+https://github.com/TasteBudzz/tasteBudzzApp/blob/development/Tast%20Budzz%201.mp4
 [Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 ## Completed user stories
 
-- List the completed user stories from this unit
-- List any pending user stories / any user stories you decided to cut
-from the original requirements
-
-[Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
+- added restaurant detail with rating, desc, ranking, image, cuisines
+- allow users to see restaurant menu items 
+- added nav bar to allow uers to swtich between screens 
+- added features to allow users to add, edit, and delete reviews for restaurnts
+Pending:
+- show the nutrition and recipe info for menu item
+- allo users to edit, save, and delete recipes/nutrition infos 
+https://youtu.be/z4C690i2H08
 ## App Demo Video
 
 - Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+https://youtu.be/z4C690i2H08
