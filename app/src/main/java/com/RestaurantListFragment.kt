@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +31,7 @@ private const val TAG = "RestaurantList"
 private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
 private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
+private const val FOOD_IMAGE_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
 
 class RestaurantListFragment : Fragment() {
 
@@ -37,6 +40,7 @@ class RestaurantListFragment : Fragment() {
     private lateinit var restaurantsRecyclerView: RecyclerView
     private lateinit var restaurantAdapter: RestaurantAdapter
     private lateinit var shimmer: ShimmerFrameLayout
+    private  lateinit var restaurantSearch: SearchView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,6 +56,7 @@ class RestaurantListFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(context)
         restaurantsRecyclerView = view.findViewById(R.id.article_recycler_view)
+        restaurantSearch = view.findViewById(R.id.restaurantSearchBar)
         restaurantsRecyclerView.layoutManager = layoutManager
         restaurantsRecyclerView.setHasFixedSize(true)
         restaurantAdapter =  RestaurantAdapter(view.context, restaurants)
@@ -68,6 +73,18 @@ class RestaurantListFragment : Fragment() {
             view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh).isRefreshing = false
 
         }
+
+        restaurantSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(msg: String): Boolean {
+                filter(msg)
+                return false
+            }
+        })
+
         return  view
     }
 
@@ -230,6 +247,41 @@ class RestaurantListFragment : Fragment() {
     companion object {
         fun newInstance(): RestaurantListFragment {
             return RestaurantListFragment()
+        }
+    }
+
+    private fun filter(text: String) {
+        val filteredlist: ArrayList<Restaurant> = ArrayList()
+
+        for (item in restaurants) {
+            var addedRestaurant = false
+            if (item.name != null && item.name!!.lowercase().contains(text.toLowerCase())) {
+
+                filteredlist.add(item)
+                addedRestaurant = true
+            }
+
+            if (!addedRestaurant) {
+                if (item.description != null && item.description!!.lowercase().contains(text.toLowerCase())) {
+
+                    filteredlist.add(item)
+                    addedRestaurant = true
+                }
+            }
+            if (!addedRestaurant) {
+                val restaurantCuisines = item.cuisines;
+                for (cuisine in restaurantCuisines) {
+                    if (cuisine.lowercase().contains(text.toLowerCase())) {
+                        filteredlist.add(item)
+                        break
+                    }
+                }
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // Toast.makeText(context, "No restaurants with matching name or cuisine found..", Toast.LENGTH_SHORT).show()
+        } else {
+            restaurantAdapter.filterList(filteredlist)
         }
     }
 }
