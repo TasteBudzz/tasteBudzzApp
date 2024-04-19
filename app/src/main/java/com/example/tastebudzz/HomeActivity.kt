@@ -1,6 +1,8 @@
 package com.example.tastebudzz
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -79,7 +81,21 @@ class HomeActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         // views and buttons
-
+        if (findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId == R.id.action_restaurant_search){
+            // ask for camera and write file permissions
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(android.Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_DENIED) {
+                    val permission = arrayOf<String>(
+                        android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
+                    requestPermissions(permission, 112)
+                }
+            }
+        }
 
 
         signoutButton = findViewById(R.id.signoutButton)
