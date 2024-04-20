@@ -17,10 +17,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp" />
 
-
-    <!-- Ingredients Card -->
+    <!-- Combined MaterialCardView -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/ingredientsCard"
+        android:id="@+id/combinedCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/recipeNameTextView"
@@ -44,7 +43,7 @@
             <!-- Ingredients List -->
             <EditText
                 android:id="@+id/ingredientsList"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@android:color/transparent"
@@ -54,23 +53,6 @@
                 android:text="Ingredients"
                 android:textColor="#49454F" />
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Instructions Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/instructionsCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ingredientsCard"
-        android:layout_margin="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
             <!-- Instructions Header -->
             <TextView
                 android:id="@+id/instructionsHeader"
@@ -78,12 +60,13 @@
                 android:layout_height="wrap_content"
                 android:text="Instructions"
                 android:textSize="20sp"
+                android:layout_marginTop="16dp"
                 android:textStyle="bold" />
 
             <!-- Instructions Text -->
             <EditText
                 android:id="@+id/instructionsListText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@android:color/transparent"
@@ -94,23 +77,6 @@
                 android:textColor="#49454F"
                 android:textColorHint="@color/button_bg" />
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Nutrition Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/nutritionCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/instructionsCard"
-        android:layout_margin="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
             <!-- Nutrition Header -->
             <TextView
                 android:id="@+id/nutritionHeader"
@@ -118,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nutrition"
                 android:textSize="20sp"
+                android:layout_marginTop="16dp"
                 android:textStyle="bold" />
 
             <!-- Nutrition Info -->
@@ -136,7 +103,7 @@
         android:id="@+id/editRecipeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nutritionCard"
+        android:layout_below="@id/combinedCard"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/button_bg"
