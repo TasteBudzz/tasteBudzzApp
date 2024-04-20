@@ -53,9 +53,12 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
 
-    // google card view
+    // sign in with google
     implementation("androidx.cardview:cardview:1.0.0")
-
+    implementation("com.google.android.gms:play-services-auth:21.1.0")
+    implementation("androidx.credentials:credentials:1.3.0-alpha03")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0-alpha03")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
 
     //firebae
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
