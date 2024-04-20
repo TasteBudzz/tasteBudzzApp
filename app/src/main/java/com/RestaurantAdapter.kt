@@ -17,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 
 private const val TAG = "RestaurantAdapter"
 
-class RestaurantAdapter(private val context: Context, private val restaurants: List<Restaurant>) :
+class RestaurantAdapter(private val context: Context, private var restaurants: List<Restaurant>) :
     RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,6 +28,13 @@ class RestaurantAdapter(private val context: Context, private val restaurants: L
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val restaurant = restaurants[position]
         holder.bind(restaurant)
+    }
+
+    fun filterList(filterlist: ArrayList<Restaurant>) {
+
+        restaurants = filterlist
+
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = restaurants.size
