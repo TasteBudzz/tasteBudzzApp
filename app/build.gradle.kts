@@ -73,6 +73,8 @@ dependencies {
     //facebook shimmer
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    //swipe refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     implementation("com.android.volley:volley:1.2.1")
     implementation(libs.androidx.core.ktx)

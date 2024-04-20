@@ -1,6 +1,7 @@
 package com
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebudzz.R
+import com.example.tastebudzz.data.ReviewDetailActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -50,7 +52,7 @@ class ReviewsAdapter(private val context: Context, private val reviews: List<Rev
             reviewView.text = review.comment
             ratingView.text = "${review.rating} out of 5"
 
-            val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+            val sdf = SimpleDateFormat("dd MMMM yyyy hh:mm a", Locale.getDefault())
             val date = Date(review.timestamp)
             timestampView.text = sdf.format(date)
         }
@@ -62,9 +64,9 @@ class ReviewsAdapter(private val context: Context, private val reviews: List<Rev
             // navigate to edit only if reviewer is user
             if (Firebase.auth.currentUser!!.uid == review.userId) {
                 // Navigate to review details screen and pass selected restaurant
-//                val intent = Intent(context, EditReivew::class.java)
-//                intent.putExtra("REVIEW", review)
-//                context.startActivity(intent)
+                val intent = Intent(context, ReviewDetailActivity::class.java)
+                intent.putExtra("REVIEW", review)
+                context.startActivity(intent)
             }
         }
     }
