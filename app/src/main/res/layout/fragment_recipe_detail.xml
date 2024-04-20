@@ -2,33 +2,28 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:addStatesFromChildren="false"
+    android:background="@color/app_accent">
 
     <!-- Recipe Name Header -->
     <TextView
-        android:id="@+id/recipeNameHeader"
+        android:id="@+id/recipeNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:text="Recipe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp" />
 
-    <!-- Edit Button -->
-    <ImageButton
-        android:id="@+id/editButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_edit" />
 
     <!-- Ingredients Card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/ingredientsCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recipeNameHeader"
+        android:layout_below="@id/recipeNameTextView"
         android:layout_margin="16dp">
 
         <LinearLayout
@@ -51,7 +46,8 @@
                 android:id="@+id/ingredientsList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:text="Ingredients" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -81,10 +77,11 @@
 
             <!-- Instructions Text -->
             <TextView
-                android:id="@+id/instructionsText"
+                android:id="@+id/instructionsListText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:text="Instructions\nInstructions" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -114,15 +111,16 @@
 
             <!-- Nutrition Info -->
             <TextView
-                android:id="@+id/nutritionInfo"
+                android:id="@+id/nutritionInfoList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:text="nutritionInfo\nnutritionInfo" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Save Recipe Button (Only visible when editing) -->
+    <!-- Edit/Save Recipe Button  -->
     <Button
         android:id="@+id/saveRecipeButton"
         android:layout_width="wrap_content"
@@ -130,7 +128,9 @@
         android:layout_below="@id/nutritionCard"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Save Recipe"
-        android:visibility="gone" />
+        android:backgroundTint="@color/button_bg"
+        android:insetLeft="0dp"
+        android:text="Edit Recipe"
+        android:visibility="visible" />
 
 </RelativeLayout>
