@@ -405,6 +405,7 @@ class RestaurantListFragment : Fragment() {
             .build()
 
         var response = client.newCall(request).execute()
+        Log.v("API", "Passing restaurant data")
         try {
             val locationBody = response.body()!!.string()
             val jsonLocation = JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
