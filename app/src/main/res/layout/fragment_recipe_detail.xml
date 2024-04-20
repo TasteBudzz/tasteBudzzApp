@@ -42,12 +42,17 @@
                 android:textStyle="bold" />
 
             <!-- Ingredients List -->
-            <TextView
+            <EditText
                 android:id="@+id/ingredientsList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Ingredients" />
+                android:backgroundTint="@android:color/transparent"
+                android:enabled="false"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences|textMultiLine"
+                android:text="Ingredients"
+                android:textColor="#49454F" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -76,12 +81,18 @@
                 android:textStyle="bold" />
 
             <!-- Instructions Text -->
-            <TextView
+            <EditText
                 android:id="@+id/instructionsListText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Instructions\nInstructions" />
+                android:backgroundTint="@android:color/transparent"
+                android:enabled="false"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences|textMultiLine"
+                android:text="Instructions\nInstructions"
+                android:textColor="#49454F"
+                android:textColorHint="@color/button_bg" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -122,7 +133,7 @@
 
     <!-- Edit/Save Recipe Button  -->
     <Button
-        android:id="@+id/saveRecipeButton"
+        android:id="@+id/editRecipeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/nutritionCard"
