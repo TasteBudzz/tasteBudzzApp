@@ -389,8 +389,8 @@ class RestaurantListFragment : Fragment() {
         //get area string
         val city = jsonLoc.getJSONObject("city").get("name").toString()
         val region = jsonLoc.getJSONObject("area").get("name").toString()
-        val loc_string = city + ", " + region
-
+        var loc_string = city + ", " + region
+        loc_string = "Newark, New Jersey"//this doesnt work in Jackson, New Jersey
         //get location id
         var client = OkHttpClient()
 
@@ -404,7 +404,6 @@ class RestaurantListFragment : Fragment() {
             .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
             .build()
         Log.v("API", "location string: ${loc_string}")
-
 
         var response = client.newCall(request).execute()
         Log.v("API", "Passing restaurant data")
@@ -494,7 +493,7 @@ class RestaurantListFragment : Fragment() {
                 Handler(Looper.getMainLooper()).post((updateUI))
             } else {
                 Log.e("RESTAURANTS", "No near by restuaruants in your area")
-                Toast.makeText(context, "No restaurants found near you.", Toast.LENGTH_SHORT).show()
+
                 val updateUI = Runnable {
                     restaurantAdapter.notifyDataSetChanged()
                     if(shimmer.isShimmerVisible())
@@ -503,7 +502,7 @@ class RestaurantListFragment : Fragment() {
                         shimmer.setVisibility(View.GONE);
                     }
                     restaurantSearch.isEnabled = true
-
+                    Toast.makeText(context, "No restaurants found near you.", Toast.LENGTH_SHORT).show()
 
 
                 }

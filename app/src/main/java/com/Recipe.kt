@@ -16,10 +16,10 @@ data class Recipe (
 
     var nutritionInformation: ArrayList<String>,
 
-    // TODO: crete new type for ingredietnes (amount?, weight?, and so on as givin in API)
-    // var ingredients: ArrayList<>,
+    // TODO: create new type for ingredietnes (amount?, weight?, and so on as given in API)
+    // var ingredients: ArrayList<String>,
 
-    // TODO: crete new type for instruction (time? as givin in API)
+    // TODO: create new type for instruction (time? as given in API)
     // var instructions: ArrayList<E>,
 
 ): Serializable

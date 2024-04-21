@@ -138,6 +138,53 @@ class RecipeDetailActivity : AppCompatActivity() {
                 val resName = jsonRestaurant.get("title")
                 val resImg = jsonRestaurant.get("image")
 
+                val detailRequest = Request.Builder()
+                    .url("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/$resId/information")
+                    .get()
+                    .addHeader("X-RapidAPI-Key", "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335")
+                    .addHeader("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                    .build()
+
+                val detailResponse = client.newCall(detailRequest).execute()
+                val detailResponseBody = detailResponse.body()!!.string()
+
+                var readyInMinutes = 0
+                var servings = 0
+                var recipeSummary = ""
+                var ingredientsList = ""
+                try {
+                    if(detailResponseBody != null){
+                        var jsonResponse2 = JSONObject(detailResponseBody)
+                        readyInMinutes = jsonResponse2.getInt("readyInMinutes")
+                        servings = jsonResponse2.getInt("servings")
+                        recipeSummary = jsonResponse2.getString("summary")
+                        val ingredientsArray = jsonResponse2.getJSONArray("extendedIngredients")
+
+                        val ingredientsBuilder = StringBuilder()
+                        for (i in 0 until ingredientsArray.length()) {
+                            val ingredient = ingredientsArray.getJSONObject(i)
+                            val ingredientName = ingredient.getString("name")
+                            ingredientsBuilder.append("$ingredientName\n")
+                        }
+                        ingredientsList = ingredientsBuilder.toString()
+                        Log.v("Ingredients", ingredientsList)
+
+                        val detailsBuilder = StringBuilder()
+                        detailsBuilder.append("Preparation Time: $readyInMinutes minutes\n")
+                        detailsBuilder.append("Servings: $servings\n")
+                        detailsBuilder.append("Recipe: $recipeSummary\n")
+                        Log.v("Recipe INFO", detailsBuilder.toString())
+
+
+
+                    }
+                } catch (exception: JSONException) {
+                    Log.e("Recipe API", "error fetching recipe details", exception)
+                    if (detailResponseBody != null) {
+                        Log.e("Recipe Detail Response Body", detailResponseBody)
+                    }
+                }
+
                 var resNutrition = ArrayList<String>()
                 val jsonNutrition =
                     jsonRestaurant.getJSONObject("nutrition").getJSONArray("nutrients")
@@ -170,6 +217,13 @@ class RecipeDetailActivity : AppCompatActivity() {
                 for (i in 0 until recipe.nutritionInformation.size) {
                     nutritionText += recipe.nutritionInformation[i] + "\n"
                 }
+                //APPEND Recipe, Prep time, ingredients, Servings to nutritionText
+                nutritionText += "\n--- Recipe Details ---\n"
+                nutritionText += "Preparation Time: $readyInMinutes minutes\n"
+                nutritionText += "Servings: $servings\n"
+                nutritionText += "Ingredients:\n$ingredientsList\n"
+                nutritionText += "Recipe:\n$recipeSummary\n"
+
                 recipeNameView.text = recipe.name
                 Glide.with(this)
                     .load(recipe.recipeImageURL)
