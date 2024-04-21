@@ -11,18 +11,31 @@ tools:context=".RestaurantReviewActivity"
 android:orientation="vertical">
 
 
-<Button
-    android:id="@+id/button"
-    android:layout_width="wrap_content"
-    android:layout_gravity="end"
-    android:layout_height="wrap_content"
-    android:text="Button" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/backBUtton"
+            android:layout_width="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            />
+        <ImageView
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:src="@drawable/baseline_logout_24"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/reviewRestaurantName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
         android:gravity="center"
         android:textSize="40dp"
         android:layout_marginEnd="10dp"

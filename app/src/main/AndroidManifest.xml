@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,34 +17,45 @@
         android:theme="@style/Theme.TasteBudzz"
         tools:targetApi="31">
         <activity
-            android:name=".RestaurantReviewsListActivity"
+            android:name=".RecipeDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".RestaurantReviewsListActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".RestaurantReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".RestaurantDetailActivity"
+            android:name=".RecipeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="true">
+            android:name=".data.ReviewEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".data.ReviewDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantDetailActivity"
+            android:exported="false" />
 
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
         <activity
             android:name=".MenuActivity"
-            android:exported="true">        </activity>
-
-
-
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

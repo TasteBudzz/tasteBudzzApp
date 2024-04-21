@@ -12,4 +12,40 @@
     <string name="siva_default_web_client_id">x689639059323-6i4jet9s82vvrv153kuqr48tm56sgkup.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_nutrition_string">
+        Calories: …\n
+Protein: …\n
+Fat: …\n
+Carbohydrates: …\n
+Alcohol: …\n
+Caffeine: …\n
+Copper: …\n
+Calcium: …\n
+Cholesterol: …\n
+Choline: …\n
+Fluoride: …\n
+Saturated Fat: …\n
+Vitamin A: …\n
+Vitamin C: …\n
+Vitamin D: …\n
+Vitamin E: …\n
+Vitamin K: …\n
+Vitamin B1: …\n
+Vitamin B2: …\n
+Vitamin B3: …\n
+Vitamin B5: …\n
+Vitamin B6: …\n
+Vitamin B12: …\n
+Fiber: …\n
+Folate: …\n
+Folic Acid: …\n
+Iron: …\n
+Magnesium: …\n
+Manganese: …\n
+Phosphorus: …\n
+Potassium: …\n
+Selenium: …\n
+Sodium: …\n
+    </string>
+    <string name="default_web_client_id">689639059323-jnpupcjjbid19jts1f0bk0a5p7770e8n.apps.googleusercontent.com</string>
 </resources>

@@ -5,6 +5,8 @@ import java.sql.Timestamp
 
 data class Review (
 
+    var reviewId: String,
+
     var userId: String?,
 
     var restaurantId: String?,

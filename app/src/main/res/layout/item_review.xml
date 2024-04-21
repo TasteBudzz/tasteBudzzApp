@@ -44,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:lines="5"
         android:text="User Review"
         android:gravity="start"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"

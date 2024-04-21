@@ -59,6 +59,7 @@ class SavedRecipesFragment : Fragment() {
             fragmentManager?.beginTransaction()?.replace(R.id.restaurant_frame_layout, fragment)
                 ?.commit()
         }
+        adapter.notifyDataSetChanged()
         recyclerView.adapter = adapter
         return view
     }
