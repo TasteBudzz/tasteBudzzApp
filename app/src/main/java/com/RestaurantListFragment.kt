@@ -446,10 +446,17 @@ class RestaurantListFragment : Fragment() {
                     val resAddress = jsonRestaurant.get("address")
                     val resRanking = jsonRestaurant.get("ranking")
 
-                    val resImg = jsonRestaurant.getJSONObject("photo")
-                        .getJSONObject("images")
-                        .getJSONObject("large")
-                        .get("url")
+                    var resImg: String? = null
+
+                    try {
+                        resImg = jsonRestaurant.getJSONObject("photo")
+                            .getJSONObject("images")
+                            .getJSONObject("large")
+                            .get("url") as String
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                        resImg = ""
+                    }
                     val resCuisines = ArrayList<String>()
                     val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
                     Log.v("API", jsonCuisines.toString())
