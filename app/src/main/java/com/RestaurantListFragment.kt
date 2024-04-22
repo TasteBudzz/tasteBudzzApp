@@ -389,8 +389,7 @@ class RestaurantListFragment : Fragment() {
         //get area string
         val city = jsonLoc.getJSONObject("city").get("name").toString()
         val region = jsonLoc.getJSONObject("area").get("name").toString()
-        var loc_string = city + ", " + region
-        loc_string = "Newark, New Jersey"//this doesnt work in Jackson, New Jersey
+        val loc_string = city + ", " + region
         //get location id
         var client = OkHttpClient()
 
@@ -448,10 +447,18 @@ class RestaurantListFragment : Fragment() {
                     val resAddress = jsonRestaurant.get("address")
                     val resRanking = jsonRestaurant.get("ranking")
 
-                    val resImg = jsonRestaurant.getJSONObject("photo")
-                        .getJSONObject("images")
-                        .getJSONObject("large")
-                        .get("url")
+                    var resImg: String? = null
+
+                    try {
+                        resImg = jsonRestaurant.getJSONObject("photo")
+                            .getJSONObject("images")
+                            .getJSONObject("large")
+                            .get("url") as String
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                        resImg = ""
+                    }
+
                     val resCuisines = ArrayList<String>()
                     val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
                     Log.v("API", jsonCuisines.toString())

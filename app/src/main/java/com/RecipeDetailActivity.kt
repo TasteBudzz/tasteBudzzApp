@@ -157,7 +157,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                         var jsonResponse2 = JSONObject(detailResponseBody)
                         readyInMinutes = jsonResponse2.getInt("readyInMinutes")
                         servings = jsonResponse2.getInt("servings")
-                        recipeSummary = jsonResponse2.getString("summary")
+                        recipeSummary = jsonResponse2.getString("instructions")
                         val ingredientsArray = jsonResponse2.getJSONArray("extendedIngredients")
 
                         val ingredientsBuilder = StringBuilder()
