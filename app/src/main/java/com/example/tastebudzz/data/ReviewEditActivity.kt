@@ -106,6 +106,11 @@ class ReviewEditActivity : AppCompatActivity() {
             intent.putExtra("REVIEW", review)
             startActivity(intent)
         }
+        findViewById<Button>(R.id.restaurantReviewCancelButton).setOnClickListener {
+            val intent = Intent(this, ReviewDetailActivity::class.java)
+            intent.putExtra("REVIEW", review)
+            startActivity(intent)
+        }
         findViewById<ImageView>(R.id.logoutButton).setOnClickListener{
             Firebase.auth.signOut()
             val intent = Intent(this, SignInActivity::class.java)

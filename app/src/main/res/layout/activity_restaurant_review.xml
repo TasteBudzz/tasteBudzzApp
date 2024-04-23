@@ -111,6 +111,8 @@ android:orientation="vertical">
     <Button
         android:id="@+id/restaurantReviewSubmitButton"
         android:layout_width="wrap_content"
+        android:backgroundTint="@color/button_color"
+
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
@@ -119,6 +121,8 @@ android:orientation="vertical">
         android:id="@+id/restaurantReviewCancelButton"
         android:layout_width="wrap_content"
         android:layout_marginLeft="20dp"
+        android:backgroundTint="@color/button_color"
+
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_height="wrap_content"
         android:text="Cancel" />

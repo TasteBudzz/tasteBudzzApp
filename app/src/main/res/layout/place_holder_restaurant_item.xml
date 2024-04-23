@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_margin="10dp"
-    android:background="#D9D9D9"
+    android:background="@color/app_grey"
     android:layout_height="200dp">
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:layout_height="200dp">
     <ImageView
         android:id="@+id/restaurantImage"
         android:layout_width="0dp"
@@ -58,3 +61,4 @@
         app:layout_constraintStart_toEndOf="@+id/restaurantImage"
         app:layout_constraintTop_toBottomOf="@+id/rating" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
