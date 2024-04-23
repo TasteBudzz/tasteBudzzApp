@@ -1,9 +1,12 @@
 package com
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,10 +46,23 @@ class SavedRecipesFragment : Fragment() {
         )
 
         adapter = SavedRecipesAdapter(savedRecipes) { savedRecipe ->
-            // Handle item click here, e.g., navigate to the specific recipe page
+            // Handle item click here
+            Log.d("SavedRecipe", "Clicked on: ${savedRecipe.recipeName}")
+            Log.d("SavedRecipe", "Restaurant: ${savedRecipe.restaurantName}")
+            Log.d("SavedRecipe", "Ingredients: ${savedRecipe.ingredients.joinToString(", ")}")
+            Log.d("SavedRecipe", "Instructions: ${savedRecipe.instructions}")
+            Log.d("SavedRecipe", "Nutrition: $savedRecipe")
+            val fragment = RecipeDetailFragment()
+            val bundle = Bundle()
+            bundle.putSerializable("savedRecipe", savedRecipe)
+            fragment.arguments = bundle
+            fragmentManager?.beginTransaction()?.replace(R.id.restaurant_frame_layout, fragment)
+                ?.commit()
         }
         adapter.notifyDataSetChanged()
         recyclerView.adapter = adapter
         return view
     }
+
+
 }
