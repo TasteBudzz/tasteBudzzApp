@@ -390,7 +390,6 @@ class RestaurantListFragment : Fragment() {
         val city = jsonLoc.getJSONObject("city").get("name").toString()
         val region = jsonLoc.getJSONObject("area").get("name").toString()
         val loc_string = city + ", " + region
-
         //get location id
         var client = OkHttpClient()
 
@@ -403,8 +402,10 @@ class RestaurantListFragment : Fragment() {
             .addHeader("X-RapidAPI-Key", SEARCH_API_KEY)
             .addHeader("X-RapidAPI-Host", "worldwide-restaurants.p.rapidapi.com")
             .build()
+        Log.v("API", "location string: ${loc_string}")
 
         var response = client.newCall(request).execute()
+        Log.v("API", "Passing restaurant data")
         try {
             val locationBody = response.body()!!.string()
             val jsonLocation = JSONObject(locationBody).getJSONObject("results").getJSONArray("data")
@@ -457,6 +458,7 @@ class RestaurantListFragment : Fragment() {
                         e.printStackTrace()
                         resImg = ""
                     }
+
                     val resCuisines = ArrayList<String>()
                     val jsonCuisines = jsonRestaurant.getJSONArray("cuisine")
                     Log.v("API", jsonCuisines.toString())
@@ -496,9 +498,38 @@ class RestaurantListFragment : Fragment() {
 
                 }
                 Handler(Looper.getMainLooper()).post((updateUI))
+            } else {
+                Log.e("RESTAURANTS", "No near by restuaruants in your area")
+
+                val updateUI = Runnable {
+                    restaurantAdapter.notifyDataSetChanged()
+                    if(shimmer.isShimmerVisible())
+                    {
+                        shimmer.stopShimmer();
+                        shimmer.setVisibility(View.GONE);
+                    }
+                    restaurantSearch.isEnabled = true
+                    Toast.makeText(context, "No restaurants found near you.", Toast.LENGTH_SHORT).show()
+
+
+                }
+                Handler(Looper.getMainLooper()).post((updateUI))
             }
         } catch (exception: JSONException) {
             Log.e("RESTAURANTS", exception.localizedMessage.toString())
+            val updateUI = Runnable {
+                restaurantAdapter.notifyDataSetChanged()
+                if(shimmer.isShimmerVisible())
+                {
+                    shimmer.stopShimmer();
+                    shimmer.setVisibility(View.GONE);
+                }
+                restaurantSearch.isEnabled = true
+
+
+
+            }
+            Handler(Looper.getMainLooper()).post((updateUI))
         }
 
     }
