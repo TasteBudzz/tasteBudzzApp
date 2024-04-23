@@ -25,15 +25,14 @@ android:padding="16dp">
     android:src="@drawable/placeholder_food_image" />
 
 <!-- Text Views on the left -->
-<LinearLayout
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:orientation="vertical"
-    android:gravity="start|center_vertical"
-    android:paddingStart="16dp"
-    android:paddingEnd="8dp">
-
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center|center_vertical|center_horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp">
     <TextView
         android:id="@+id/textFoodName"
         android:layout_width="wrap_content"
@@ -44,6 +43,7 @@ android:padding="16dp">
     <TextView
         android:id="@+id/textPrice"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="Price: $0.00" />
