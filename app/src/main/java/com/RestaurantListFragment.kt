@@ -356,6 +356,7 @@ class RestaurantListFragment : Fragment() {
 
 
     private fun fetchRestaurants() {
+        /*
         //get public ip
         var ip: String? = null
         try {
@@ -390,6 +391,8 @@ class RestaurantListFragment : Fragment() {
         val city = jsonLoc.getJSONObject("city").get("name").toString()
         val region = jsonLoc.getJSONObject("area").get("name").toString()
         val loc_string = city + ", " + region
+        */
+        val loc_string = "Newark, New Jersey"
         //get location id
         var client = OkHttpClient()
 
