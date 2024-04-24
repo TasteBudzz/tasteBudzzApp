@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.Recipe
+import com.SavedRecipesFragment
 import com.example.tastebudzz.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
@@ -142,12 +143,24 @@ class RecipeDetailFragment : Fragment() {
                     Log.d("RecipeDetailFragment", "Recipe deleted successfully from Firebase")
                     // Handle navigation back to previous page
                     // For example:
-                    fragmentManager?.popBackStack()
+                    // Navigate back to the previous fragment
+                    navigateBack()
 
                 }
                 .addOnFailureListener { e ->
                     Log.e("RecipeDetailFragment", "Error deleting recipe from Firebase", e)
                 }
+        }
+    }
+
+    private fun navigateBack() {
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            // Replace the current fragment with the previous one
+            replace(R.id.restaurant_frame_layout, SavedRecipesFragment())
+            // Add the transaction to the back stack
+            addToBackStack(null)
+            // Commit the transaction
+            commit()
         }
     }
 }
