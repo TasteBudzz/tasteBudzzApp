@@ -22,4 +22,7 @@ data class Recipe (
     // TODO: create new type for instruction (time? as given in API)
     var instructions: String,
 
-): Serializable
+    var restaurantName: String,
+
+
+    ) : Serializable

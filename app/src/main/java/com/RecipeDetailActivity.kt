@@ -213,7 +213,8 @@ class RecipeDetailActivity : AppCompatActivity() {
                     resImg as String,
                     resNutrition,
                     ingredientsList,
-                    RecipeInstructions
+                    RecipeInstructions,
+                    restaurant.name.toString()
                 )
                 Log.e("RESTAURANT", recipe.toString())
 
