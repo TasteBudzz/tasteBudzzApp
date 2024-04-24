@@ -8,34 +8,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebudzz.R
 
 class SavedRecipesAdapter(
-    private val savedRecipes: List<SavedRecipe>,
-    private val onItemClick: (SavedRecipe) -> Unit
+    private val recipes: List<Recipe>,
+    private val onItemClick: (Recipe) -> Unit
 ) :
-    RecyclerView.Adapter<SavedRecipesAdapter.SavedRecipeViewHolder>() {
+    RecyclerView.Adapter<SavedRecipesAdapter.RecipeViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedRecipeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_saved_recipe, parent, false)
-        return SavedRecipeViewHolder(view)
+        return RecipeViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SavedRecipeViewHolder, position: Int) {
-        val savedRecipe = savedRecipes[position]
-        holder.bind(savedRecipe)
-        holder.itemView.setOnClickListener { onItemClick(savedRecipe) }
+    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
+        val recipe = recipes[position]
+        holder.bind(recipe)
+        holder.itemView.setOnClickListener { onItemClick(recipe) }
     }
 
     override fun getItemCount(): Int {
-        return savedRecipes.size
+        return recipes.size
     }
 
-    inner class SavedRecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val recipeNameTextView: TextView = itemView.findViewById(R.id.recipeName)
         private val restaurantNameTextView: TextView = itemView.findViewById(R.id.restaurantName)
 
-        fun bind(savedRecipe: SavedRecipe) {
-            recipeNameTextView.text = savedRecipe.recipeName
-            restaurantNameTextView.text = savedRecipe.restaurantName
+        fun bind(recipe: Recipe) {
+            recipeNameTextView.text = recipe.name
+            restaurantNameTextView.text = recipe.restaurantName
         }
     }
 }

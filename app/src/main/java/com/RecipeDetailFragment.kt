@@ -19,7 +19,7 @@ class RecipeDetailFragment : Fragment() {
     private lateinit var nutritionTextView: TextView
     private lateinit var editRecipeButton: Button
 
-    private var savedRecipe: SavedRecipe? = null
+    private var recipe: Recipe? = null
     private var isEditingMode = false
 
     override fun onCreateView(
@@ -34,17 +34,21 @@ class RecipeDetailFragment : Fragment() {
         nutritionTextView = view.findViewById(R.id.nutritionInfoList)
         editRecipeButton = view.findViewById(R.id.editRecipeButton)
 
-        // Retrieve the SavedRecipe object from arguments
-        savedRecipe = arguments?.getSerializable("savedRecipe") as? SavedRecipe ?: SavedRecipe(
+        // Retrieve the Recipe object from arguments
+        recipe = arguments?.getSerializable("recipe") as? Recipe ?: Recipe(
             "",
             "",
-            emptyList(),
+            "",
+            "",
+            null,
+            arrayListOf(),
+            arrayListOf(),
             "",
             ""
         )
-        populateRecipeDetails(savedRecipe)
+        populateRecipeDetails(recipe)
 
-        // Display the details of the saved recipe
+        // Display the details of the recipe
         editRecipeButton.setOnClickListener {
             if (isEditingMode) {
                 saveRecipe()
@@ -56,13 +60,13 @@ class RecipeDetailFragment : Fragment() {
         return view
     }
 
-    private fun populateRecipeDetails(savedRecipe: SavedRecipe?) {
-        savedRecipe?.let {
-            this.savedRecipe = it
-            recipeNameTextView.text = it.recipeName
+    private fun populateRecipeDetails(recipe: Recipe?) {
+        recipe?.let {
+            this.recipe = it
+            recipeNameTextView.text = it.name
             ingredientsEditText.setText(it.ingredients.joinToString("\n"))
             instructionsEditText.setText(it.instructions)
-            nutritionTextView.text = it.nutrition
+            nutritionTextView.text = it.nutritionInformation.joinToString("\n")
         }
     }
 
@@ -79,16 +83,20 @@ class RecipeDetailFragment : Fragment() {
         instructionsEditText.isEnabled = false
         ingredientsEditText.isEnabled = false
 
-        savedRecipe?.let {
-            val editedRecipe = SavedRecipe(
-                it.recipeName,
-                it.restaurantName,
-                ingredientsEditText.text.split("\n"),
+        recipe?.let {
+            val editedRecipe = Recipe(
+                it.id,
+                it.userId,
+                it.recipeId,
+                it.name,
+                it.recipeImageURL,
+                it.nutritionInformation,
+                ingredientsEditText.text.split("\n").toCollection(ArrayList()),
                 instructionsEditText.text.toString(),
-                it.nutrition
+                it.restaurantName
             )
             // Log the edited recipe
-            Log.d("RecipeDetailFragment", "Saved Recipe: $editedRecipe")
+            Log.d("RecipeDetailFragment", "Edited Recipe: $editedRecipe")
             // Now you can do whatever you need with the edited recipe, like save it to a database
         }
     }
