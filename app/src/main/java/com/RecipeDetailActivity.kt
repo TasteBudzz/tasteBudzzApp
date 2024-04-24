@@ -5,37 +5,23 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import com.Recipe
 import com.Restaurant
-import com.RestaurantListFragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.gif.StreamGifDecoder
-import com.example.tastebudzz.data.UserReviewsFragment
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.IOException
-import java.io.Serializable
-import java.net.URLEncoder
 
 class RecipeDetailActivity : AppCompatActivity() {
     private lateinit var recipeNameView: TextView
@@ -118,7 +104,7 @@ class RecipeDetailActivity : AppCompatActivity() {
 
                 val request = Request.Builder()
                     .url(
-                        "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${foodName}&cuisine=${cuisines}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&maxCarbs=1000000000&maxProtein=1000000000&maxCalories=1000000000&maxFat=1000000000&maxAlcohol=1000000000&maxCaffeine=1000000000&maxCopper=1000000000&maxCalcium=1000000000&maxCholine=1000000000&maxCholesterol=1000000000&maxFluoride=1000000000&maxSaturatedFat=1000000000&maxVitaminA=1000000000&maxVitaminC=1000000000&maxVitaminD=1000000000&maxVitaminE=1000000000&maxVitaminK=1000000000&maxVitaminB1=1000000000&maxVitaminB2=1000000000&maxVitaminB5=1000000000&maxVitaminB3=1000000000&maxVitaminB6=1000000000&maxVitaminB12=1000000000&maxFiber=1000000000&maxFolate=1000000000&maxFolicAcid=1000000000&maxIodine=1000000000&maxIron=1000000000&maxMagnesium=1000000000&maxManganese=1000000000&maxPhosphorus=1000000000&maxPotassium=1000000000&maxSelenium=1000000000&maxSodium=1000000000&maxSugar=1000000000&maxZinc=1000000000&number=1000000000&ranking=2"
+                        "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${foodName}&cuisine=${cuisines}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&maxCarbs=1000000000&maxProtein=1000000000&maxCalories=1000000000&maxFat=1000000000&maxCholesterol=1000000000&maxSodium=1000000000&maxSugar=1000000000&number=1000000000&ranking=2"
                     )
                     .get()
                     .addHeader(
