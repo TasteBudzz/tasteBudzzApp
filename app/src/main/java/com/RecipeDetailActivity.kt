@@ -43,6 +43,8 @@ class RecipeDetailActivity : AppCompatActivity() {
     private lateinit var nutritionList: TextView
     private lateinit var restaurant: Restaurant
     private lateinit var foodName: String
+    private lateinit var ingredientList: TextView
+    private lateinit var recipeInfo: TextView
     private  lateinit var recipe: Recipe
     private lateinit var saveRecipeButton: Button
     private var cuisinesQuery = ""
@@ -58,6 +60,8 @@ class RecipeDetailActivity : AppCompatActivity() {
         recipeNameView = findViewById(R.id.recipeName)
         recipeImageView = findViewById(R.id.recipeImage)
         nutritionList = findViewById(R.id.recipeNutritionsInfo)
+        ingredientList = findViewById(R.id.ingredientsList)
+        recipeInfo = findViewById(R.id.recipeInfo)
         saveRecipeButton = findViewById(R.id.saveRecipeButton)
         shimmerFrameLayout = findViewById(R.id.shimmerView)
 
@@ -135,6 +139,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                 var jsonRestaurants = jsonResponse.getJSONArray("results")
                 val jsonRestaurant = JSONObject(jsonRestaurants[0].toString())
                 val resId = jsonRestaurant.get("id").toString()
+                Log.v("foodid: ", resId)
                 val resName = jsonRestaurant.get("title")
                 val resImg = jsonRestaurant.get("image")
 
@@ -147,11 +152,13 @@ class RecipeDetailActivity : AppCompatActivity() {
 
                 val detailResponse = client.newCall(detailRequest).execute()
                 val detailResponseBody = detailResponse.body()!!.string()
+                Log.v("GET RECIPE INFORMATION API", responseBody)
 
                 var readyInMinutes = 0
                 var servings = 0
                 var recipeSummary = ""
-                var ingredientsList = ""
+                var RecipeInstructions = ""
+                var ingredientsList = ArrayList<String>()
                 try {
                     if(detailResponseBody != null){
                         var jsonResponse2 = JSONObject(detailResponseBody)
@@ -160,21 +167,20 @@ class RecipeDetailActivity : AppCompatActivity() {
                         recipeSummary = jsonResponse2.getString("instructions")
                         val ingredientsArray = jsonResponse2.getJSONArray("extendedIngredients")
 
-                        val ingredientsBuilder = StringBuilder()
                         for (i in 0 until ingredientsArray.length()) {
                             val ingredient = ingredientsArray.getJSONObject(i)
-                            val ingredientName = ingredient.getString("name")
-                            ingredientsBuilder.append("$ingredientName\n")
+                            var ingredientName = ingredient.getString("name")
+                            ingredientName += " " + ingredient.getInt("amount").toString() +" "+ ingredient.getString("unit")
+                            ingredientsList.add(ingredientName)
                         }
-                        ingredientsList = ingredientsBuilder.toString()
-                        Log.v("Ingredients", ingredientsList)
+                        Log.v("Ingredients", ingredientsList.toString())
 
                         val detailsBuilder = StringBuilder()
                         detailsBuilder.append("Preparation Time: $readyInMinutes minutes\n")
                         detailsBuilder.append("Servings: $servings\n")
                         detailsBuilder.append("Recipe: $recipeSummary\n")
                         Log.v("Recipe INFO", detailsBuilder.toString())
-
+                        RecipeInstructions = detailsBuilder.toString()
 
 
                     }
@@ -206,6 +212,8 @@ class RecipeDetailActivity : AppCompatActivity() {
                     resName as String,
                     resImg as String,
                     resNutrition,
+                    ingredientsList,
+                    RecipeInstructions
                 )
                 Log.e("RESTAURANT", recipe.toString())
 
@@ -217,14 +225,22 @@ class RecipeDetailActivity : AppCompatActivity() {
                 for (i in 0 until recipe.nutritionInformation.size) {
                     nutritionText += recipe.nutritionInformation[i] + "\n"
                 }
+                /*
                 //APPEND Recipe, Prep time, ingredients, Servings to nutritionText
                 nutritionText += "\n--- Recipe Details ---\n"
                 nutritionText += "Preparation Time: $readyInMinutes minutes\n"
                 nutritionText += "Servings: $servings\n"
                 nutritionText += "Ingredients:\n$ingredientsList\n"
                 nutritionText += "Recipe:\n$recipeSummary\n"
+                */
 
                 recipeNameView.text = recipe.name
+                var recipetxt = "Ingredients:\n"
+                for (i in 0 until recipe.ingredients.size) {
+                     recipetxt += "${i+1}. " + recipe.ingredients[i] + "\n"
+                }
+                ingredientList.text = recipetxt
+                recipeInfo.text = recipe.instructions
                 Glide.with(this)
                     .load(recipe.recipeImageURL)
                     .fitCenter()
