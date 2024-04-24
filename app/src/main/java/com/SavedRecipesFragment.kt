@@ -9,11 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebudzz.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+
 
 class SavedRecipesFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SavedRecipesAdapter
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,33 +35,35 @@ class SavedRecipesFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Sample data
-        val savedRecipes = listOf(
-            Recipe(
-                "1",
-                "userId1",
-                "recipeId1",
-                "Pasta Recipe",
-                null,
-                arrayListOf("Nutrition info for Recipe 1"),
-                arrayListOf("Ingredient A1", "Ingredient A2"),
-                "Instructions for Recipe 1",
-                "Rodizio's Restaurant"
-            ),
-            Recipe(
-                "2",
-                "userId2",
-                "recipeId2",
-                "Grandma's Pizza Recipe",
-                null,
-                arrayListOf("Nutrition info for Recipe 2"),
-                arrayListOf("Ingredient B1", "Ingredient B2"),
-                "Instructions for Recipe 2",
-                "Luigi's Restaurant"
-            )
-            // Add more saved recipes as needed
-        )
+        auth = Firebase.auth
+        dbRef = FirebaseDatabase.getInstance().getReference("recipes")
 
+        val userRecipesQuery = dbRef.orderByChild("userId").equalTo(auth.currentUser!!.uid)
+        userRecipesQuery.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val savedRecipes = mutableListOf<Recipe>()
+                    for (snapshot in dataSnapshot.children) {
+                        val recipe = snapshot.getValue(Recipe::class.java)
+                        recipe?.let { savedRecipes.add(it) }
+                    }
+                    adapter.updateRecipes(savedRecipes)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("SavedRecipesFragment", "Error fetching recipes: $databaseError")
+            }
+        })
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val savedRecipes =
+            mutableListOf<Recipe>() // Initially empty, will be updated when data is fetched
         adapter = SavedRecipesAdapter(savedRecipes) { recipe ->
             // Handle item click here
             Log.d("Recipe", "Clicked on: ${recipe.name}")
@@ -65,8 +78,6 @@ class SavedRecipesFragment : Fragment() {
             fragmentManager?.beginTransaction()?.replace(R.id.restaurant_frame_layout, fragment)
                 ?.commit()
         }
-        adapter.notifyDataSetChanged()
         recyclerView.adapter = adapter
-        return view
     }
 }

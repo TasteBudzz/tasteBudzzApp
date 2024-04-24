@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebudzz.R
 
 class SavedRecipesAdapter(
-    private val recipes: List<Recipe>,
+    private var recipes: MutableList<Recipe>,
     private val onItemClick: (Recipe) -> Unit
-) :
-    RecyclerView.Adapter<SavedRecipesAdapter.RecipeViewHolder>() {
+) : RecyclerView.Adapter<SavedRecipesAdapter.RecipeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view =
@@ -29,6 +28,12 @@ class SavedRecipesAdapter(
         return recipes.size
     }
 
+    fun updateRecipes(newRecipes: MutableList<Recipe>) {
+        recipes.clear()
+        recipes.addAll(newRecipes)
+        notifyDataSetChanged()
+    }
+
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val recipeNameTextView: TextView = itemView.findViewById(R.id.recipeName)
         private val restaurantNameTextView: TextView = itemView.findViewById(R.id.restaurantName)
@@ -39,3 +44,4 @@ class SavedRecipesAdapter(
         }
     }
 }
+
