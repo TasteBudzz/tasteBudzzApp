@@ -170,9 +170,9 @@ Though each has their drawback. For now, will pursue the second/third option and
 https://github.com/TasteBudzz/tasteBudzzApp/blob/development/Tast%20Budzz%201.mp4
 
 Current revision with new app design: 
-![home.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/unrelease_demo_branch_video/Screenshot_20240422_211457.png) <br>
-![restaurant_menu.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/unrelease_demo_branch_video/Screenshot_20240422_211849.png) <br>
-![restaurant_review.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/unrelease_demo_branch_video/Screenshot_20240422_220102.png) <br>
+![home.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/Screenshot_20240422_211457.png) <br>
+![restaurant_menu.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/Screenshot_20240422_211849.png) <br>
+![restaurant_review.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/Screenshot_20240422_220102.png) <br>
 
 
 ## Completed user stories
