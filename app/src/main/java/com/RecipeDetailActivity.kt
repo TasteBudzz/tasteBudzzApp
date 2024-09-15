@@ -109,7 +109,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                     .get()
                     .addHeader(
                         "X-RapidAPI-Key",
-                        "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
+                        "X-RapidAPI-Key"
                     )
                     .addHeader(
                         "X-RapidAPI-Host",
@@ -132,7 +132,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                 val detailRequest = Request.Builder()
                     .url("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/$resId/information")
                     .get()
-                    .addHeader("X-RapidAPI-Key", "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335")
+                    .addHeader("X-RapidAPI-Key", "X-RapidAPI-Key")
                     .addHeader("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
                     .build()
 

@@ -39,10 +39,10 @@ import java.net.URLEncoder
 
 
 private const val TAG = "RestaurantList"
-private const val SEARCH_API_KEY = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
-private const val RESTAURANT_SEARCH_URL = "1de6516ce2mshdc6312d9d47f229p1036fejsn9fa66e182335"
-private const val LOCATION_SEARCH_API_KEY= "5ade6a67874d9716be26e95bee91bd09c52eaeed"
-private const val FOOD_IMAGE_SEARCH_API_KEY= "2e97287ff29302d96ffd822e12248b27b86bfb14"// "76c387dfc382b4601d8deb6442847cfcf75e6f5d"// "28b1b1b079580cf999899e52c2aa7f7bb8016c39"
+private const val SEARCH_API_KEY = "SEARCH_API_KEY"
+private const val RESTAURANT_SEARCH_URL = "RESTAURANT_SEARCH_URL"
+private const val LOCATION_SEARCH_API_KEY= "LOCATION_SEARCH_API_KEY"
+private const val FOOD_IMAGE_SEARCH_API_KEY= "FOOD_IMAGE_SEARCH_API_KEY"
 
 class RestaurantListFragment : Fragment() {
 
