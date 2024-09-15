@@ -158,8 +158,6 @@ Though each has their drawback. For now, will pursue the second/third option and
 
 <br>
 
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] 
-
 ![issues2.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/main/issues2.png?raw=true)
 
 
@@ -170,7 +168,12 @@ Though each has their drawback. For now, will pursue the second/third option and
 
 ## GitHub Project board
 https://github.com/TasteBudzz/tasteBudzzApp/blob/development/Tast%20Budzz%201.mp4
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+
+Current revision with new app design: 
+![home.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/unrelease_demo_branch_video/Screenshot_20240422_211457.png)
+![restaurant_menu.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/unrelease_demo_branch_video/Screenshot_20240422_211849.png)
+![restaurant_review.png](https://github.com/TasteBudzz/tasteBudzzApp/blob/unrelease_demo_branch_video/Screenshot_20240422_220102.png)
+
 
 ## Completed user stories
 
